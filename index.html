@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Midnight Seoul - 도심 속 안식처</title>
+    <!-- Google Fonts & Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+KR:wght@200..900&family=Noto+Sans+KR:wght@100..900&display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS with CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "surface-container": "#f0eded",
+                            "secondary-container": "#dce0e5",
+                            "on-tertiary-fixed": "#1c1c19",
+                            "secondary-fixed-dim": "#c2c7cc",
+                            "on-secondary-fixed": "#171c20",
+                            "on-tertiary": "#ffffff",
+                            "tertiary-fixed-dim": "#c8c6c2",
+                            "on-error": "#ffffff",
+                            "on-primary-container": "#ffe4cb",
+                            "surface": "#fcf9f8",
+                            "on-primary-fixed-variant": "#5b4225",
+                            "secondary-fixed": "#dfe3e8",
+                            "inverse-on-surface": "#f3f0ef",
+                            "inverse-surface": "#313030",
+                            "on-primary": "#ffffff",
+                            "on-background": "#1c1b1b",
+                            "surface-container-low": "#f6f3f2",
+                            "on-surface-variant": "#4e453c",
+                            "outline-variant": "#d2c4b8",
+                            "primary-fixed": "#ffddbb",
+                            "on-primary-fixed": "#2a1702",
+                            "primary-fixed-dim": "#e5c09b",
+                            "primary": "#664b2e",
+                            "tertiary": "#51504d",
+                            "surface-tint": "#75593b",
+                            "on-tertiary-fixed-variant": "#474743",
+                            "warm-sand": "#806344",
+                            "deep-charcoal": "#353A3E",
+                            "tertiary-fixed": "#e5e2dd",
+                            "on-secondary": "#ffffff",
+                            "soft-ivory": "#FFFFFF",
+                            "on-secondary-container": "#5e6368",
+                            "surface-container-high": "#eae7e7",
+                            "on-surface": "#1c1b1b",
+                            "on-error-container": "#93000a",
+                            "tertiary-container": "#696864",
+                            "surface-variant": "#e5e2e1",
+                            "secondary": "#5a5f63",
+                            "on-tertiary-container": "#ebe8e3",
+                            "surface-dim": "#dcd9d9",
+                            "error-container": "#ffdad6",
+                            "outline": "#80756b",
+                            "inverse-primary": "#e5c09b",
+                            "surface-container-highest": "#e5e2e1",
+                            "background": "#fcf9f8",
+                            "surface-bright": "#fcf9f8",
+                            "error": "#ba1a1a",
+                            "champagne-gold": "#C5A377",
+                            "on-secondary-fixed-variant": "#42474b",
+                            "primary-container": "#806344",
+                            "surface-container-lowest": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "maxWidth": {
+                            "container-max": "1500px"
+                        },
+                        "spacing": {
+                            "unit": "8px",
+                            "gutter": "24px",
+                            "margin-mobile": "20px",
+                            "container-max": "1500px",
+                            "margin-desktop": "60px",
+                            "section-gap": "120px"
+                        },
+                        "fontFamily": {
+                            "body-md": ["Noto Sans KR", "Hanken Grotesk"],
+                            "headline-md": ["Noto Serif KR", "EB Garamond"],
+                            "display-lg": ["Noto Serif KR", "EB Garamond"],
+                            "label-caps": ["Noto Sans KR", "Hanken Grotesk"],
+                            "body-lg": ["Noto Sans KR", "Hanken Grotesk"],
+                            "display-lg-mobile": ["Noto Serif KR", "EB Garamond"],
+                            "headline-lg": ["Noto Serif KR", "EB Garamond"]
+                        },
+                        "fontSize": {
+                            "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                            "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                            "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                            "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                            "display-lg-mobile": ["40px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                            "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }]
+                        }
+                    },
+                },
+            }
+        } catch (_e) { }
+    </script>
+    <style>
+        /* Custom Premium Glassmorphism and Animations */
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(128, 99, 68, 0.15);
+        }
+
+        .dark .glass-nav {
+            background-color: rgba(28, 27, 27, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hide scrollbars but keep functionality */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Detail/Summary smooth heights */
+        details[open] summary~* {
+            animation: slideDown 0.35s ease-out;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating effects */
+        .editorial-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hero entrance animation */
+        .hero-title-load {
+            animation: heroLoad 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes heroLoad {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Snapping & Section Pinning */
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        footer {
+            scroll-snap-align: end;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-on-surface bg-background antialiased">
+
+    <!-- TopNavBar -->
+    <header class="fixed top-0 w-full z-50 bg-transparent transition-all duration-500">
+        <nav
+            class="flex justify-between items-center w-full px-6 md:px-margin-desktop py-4 mx-auto">
+            <!-- Logo -->
+            <div class="font-headline-lg text-headline-lg text-soft-ivory dark:text-soft-ivory tracking-tighter cursor-pointer transition-colors duration-300"
+                id="navbar-logo">
+                Midnight Seoul
+            </div>
+
+            <!-- Menu Button -->
+            <div class="flex items-center gap-4">
+                <!-- Hamburger Menu Toggle -->
+                <button class="text-soft-ivory focus:outline-none p-1 hover:opacity-80 transition-opacity" id="mobile-menu-btn"
+                    aria-label="메뉴 열기">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-black/45 z-10"></div>
+                <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                    <source src="images/magnific_Kj5CYIjkqp.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="relative z-20 max-w-4xl px-margin-mobile text-center hero-title-load">
+                <span class="font-label-caps text-soft-ivory mb-6 block tracking-[0.3em] opacity-90 uppercase"
+                    style='font-family: "EB Garamond", serif;'>WELCOME TO THE HEIGHT OF SEOUL</span>
+                <h1 class="font-display-lg text-display-lg text-soft-ivory mb-12 drop-shadow-sm md:text-[84px] leading-tight"
+                    style='font-family: "EB Garamond", serif;'>
+                    Where the City <br class="" /><span class="italic font-light">Finds its Calm</span>
+                </h1>
+
+                <!-- Booking Widget Container -->
+                <div
+                    class="relative mt-12 bg-white/95 backdrop-blur-md p-2 shadow-2xl flex flex-col md:flex-row items-stretch border border-outline-variant/20 max-w-container-max mx-auto w-full z-20">
+                    <div
+                        class="flex-1 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-outline-variant/30 text-on-surface">
+
+                        <!-- Check-in Selector -->
+                        <div class="p-4 md:p-6 text-left group cursor-pointer hover:bg-surface-container-low transition-colors relative"
+                            id="widget-checkin-btn">
+                            <label
+                                class="font-label-caps text-on-surface-variant block mb-2 cursor-pointer text-xs uppercase"
+                                style="font-family: 'Hanken Grotesk', sans-serif;">체크인</label>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-warm-sand">calendar_today</span>
+                                <span
+                                    class="text-headline-md whitespace-nowrap font-body-lg font-semibold text-sm md:text-lg"
+                                    id="display-checkin-date" style="font-family: 'Hanken Grotesk', sans-serif;">2024년
+                                    10월 24일</span>
+                            </div>
+                        </div>
+
+                        <!-- Check-out Selector -->
+                        <div class="p-4 md:p-6 text-left group cursor-pointer hover:bg-surface-container-low transition-colors relative"
+                            id="widget-checkout-btn">
+                            <label
+                                class="font-label-caps text-on-surface-variant block mb-2 cursor-pointer text-xs uppercase"
+                                style="font-family: 'Hanken Grotesk', sans-serif;">체크아웃</label>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-warm-sand">calendar_month</span>
+                                <span
+                                    class="text-headline-md whitespace-nowrap font-body-lg font-semibold text-sm md:text-lg"
+                                    id="display-checkout-date" style="font-family: 'Hanken Grotesk', sans-serif;">날짜를
+                                    선택해주세요</span>
+                            </div>
+                        </div>
+
+                        <!-- Guest Selector -->
+                        <div class="p-4 md:p-6 text-left group cursor-pointer hover:bg-surface-container-low transition-colors relative"
+                            id="widget-guests-btn">
+                            <label
+                                class="font-label-caps text-on-surface-variant block mb-2 cursor-pointer text-xs uppercase"
+                                style="font-family: 'Hanken Grotesk', sans-serif;">인원</label>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-warm-sand">person</span>
+                                <span class="text-headline-md font-body-lg font-semibold text-sm md:text-lg"
+                                    id="display-guests" style="font-family: 'Hanken Grotesk', sans-serif;">성인 2명</span>
+                            </div>
+
+                            <!-- Guest Picker Dropdown Popover -->
+                            <div class="absolute top-[102%] left-0 right-0 md:right-auto md:w-80 bg-white shadow-2xl border border-outline-variant/30 p-6 rounded-sm hidden z-50 pointer-events-auto text-on-surface"
+                                id="guests-popover">
+                                <h4
+                                    class="font-label-caps text-xs text-on-surface-variant uppercase tracking-wider mb-4 border-b pb-2">
+                                    객실 투숙 인원</h4>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-body-md font-bold text-sm">성인</div>
+                                            <div class="text-[11px] text-on-surface-variant">만 13세 이상</div>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <button type="button"
+                                                class="w-8 h-8 rounded-full border border-outline-variant hover:bg-surface-container flex items-center justify-center transition-colors text-lg"
+                                                onclick="updateGuestCount('adults', -1, event)">-</button>
+                                            <span class="w-6 text-center font-semibold text-sm"
+                                                id="adult-count">2</span>
+                                            <button type="button"
+                                                class="w-8 h-8 rounded-full border border-outline-variant hover:bg-surface-container flex items-center justify-center transition-colors text-lg"
+                                                onclick="updateGuestCount('adults', 1, event)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-body-md font-bold text-sm">아동</div>
+                                            <div class="text-[11px] text-on-surface-variant">만 12세 이하</div>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <button type="button"
+                                                class="w-8 h-8 rounded-full border border-outline-variant hover:bg-surface-container flex items-center justify-center transition-colors text-lg"
+                                                onclick="updateGuestCount('children', -1, event)">-</button>
+                                            <span class="w-6 text-center font-semibold text-sm"
+                                                id="child-count">0</span>
+                                            <button type="button"
+                                                class="w-8 h-8 rounded-full border border-outline-variant hover:bg-surface-container flex items-center justify-center transition-colors text-lg"
+                                                onclick="updateGuestCount('children', 1, event)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 flex justify-end">
+                                    <button type="button"
+                                        class="bg-warm-sand text-soft-ivory px-4 py-2 font-label-caps text-xs tracking-wider hover:bg-deep-charcoal transition-colors uppercase"
+                                        onclick="applyGuests(event)">적용</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Button -->
+                    <button
+                        class="bg-warm-sand text-soft-ivory px-8 py-5 md:px-12 md:py-8 font-label-caps uppercase text-base md:text-lg tracking-widest hover:bg-deep-charcoal transition-all duration-300 flex items-center justify-center shrink-0 active:scale-95"
+                        onclick="triggerSearch()">
+                        검색 <span class="material-symbols-outlined ml-2">search</span>
+                    </button>
+                </div>
+
+                <!-- Date Picker Calendar Popover -->
+                <div class="absolute left-1/2 -translate-x-1/2 mt-3 w-[90%] max-w-lg bg-white shadow-2xl border border-outline-variant/30 p-6 rounded-sm hidden z-50 pointer-events-auto text-on-surface"
+                    id="calendar-popover">
+                    <div class="flex justify-between items-center mb-4">
+                        <button
+                            class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-low border rounded-full"
+                            onclick="changeCalendarMonth(-1, event)">
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                        </button>
+                        <h3 class="font-headline-md text-base md:text-lg" id="calendar-month-year">2024년 10월</h3>
+                        <button
+                            class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-low border rounded-full"
+                            onclick="changeCalendarMonth(1, event)">
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs font-semibold mb-2 text-on-surface-variant">
+                        <div>일</div>
+                        <div>월</div>
+                        <div>화</div>
+                        <div>수</div>
+                        <div>목</div>
+                        <div>금</div>
+                        <div>토</div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1" id="calendar-days-grid">
+                        <!-- Days loaded dynamically by script -->
+                    </div>
+                    <div class="mt-4 flex justify-between items-center border-t pt-3 text-xs text-on-surface-variant">
+                        <div id="calendar-status-text">기간을 선택해 주세요.</div>
+                        <button
+                            class="bg-warm-sand text-soft-ivory px-4 py-2 font-label-caps tracking-wider hover:bg-deep-charcoal transition-colors uppercase"
+                            onclick="closeCalendar(event)">선택 완료</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Room Categories (Our Sanctuaries) -->
+        <section class="relative min-h-screen flex flex-col justify-center items-center py-16 px-6 md:px-margin-desktop overflow-hidden"
+            id="rooms">
+            <!-- Background Image Push Slider (3 Slides) -->
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <div id="room-bg-1" class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[2500ms] ease-in-out translate-x-0"
+                    style="background-image: url('images/dada_design-QuFlLPJ26_Y-unsplash.jpg');"></div>
+                <div id="room-bg-2" class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[2500ms] ease-in-out translate-x-full"
+                    style="background-image: url('images/wes-hicks-T6WRDVQBn8M-unsplash.jpg');"></div>
+                <div id="room-bg-3" class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[2500ms] ease-in-out translate-x-full"
+                    style="background-image: url('images/masaaki-komori-iMbXscxYIFE-unsplash.jpg');"></div>
+                <!-- Overlay for contrast -->
+                <div class="absolute inset-0 bg-black/45 z-10"></div>
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+                <h2 class="font-display-lg text-display-lg text-soft-ivory mb-8 leading-tight italic font-light text-4xl md:text-[68px] drop-shadow-md"
+                    style='font-family: "EB Garamond", serif;'>
+                    Sanctuary in the City
+                </h2>
+                <p class="text-soft-ivory/90 leading-relaxed max-w-3xl mx-auto text-lg md:text-2xl drop-shadow-sm font-normal"
+                    style='font-family: "EB Garamond", serif;'>
+                    Every space is meticulously crafted for absolute serenity, combining the tactile elegance of traditional Hanok with the refined precision of modern Seoul architecture.
+                </p>
+            </div>
+        </section>
+
+        <!-- Amenities Highlight Section (Physical Sliding Stage) -->
+        <section class="min-h-screen h-screen flex flex-col items-center justify-between pt-20 pb-12 md:pb-16 bg-white px-0 overflow-hidden relative" id="amenities">
+            <!-- Physical Carousel Stage Container -->
+            <div id="amenity-stage" class="w-full h-[62vh] md:h-[70vh] relative my-auto overflow-hidden">
+                <!-- Dynamic amenity cards rendered by JS -->
+            </div>
+
+            <!-- Bottom Category Tabs -->
+            <div class="max-w-7xl mx-auto text-center w-full z-40 relative">
+                <div class="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-10 text-on-surface whitespace-nowrap"
+                    style='font-family: "EB Garamond", serif;'>
+                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal text-warm-sand transition-colors cursor-pointer"
+                        onclick="switchAmenityCategory('restaurant', this)">Restaurant</span>
+                    <span class="text-warm-sand/40 text-sm sm:text-lg font-light">·</span>
+                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                        onclick="switchAmenityCategory('fitness', this)">Fitness</span>
+                    <span class="text-warm-sand/40 text-sm sm:text-lg font-light">·</span>
+                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                        onclick="switchAmenityCategory('swimming', this)">Swimming pool</span>
+                    <span class="text-warm-sand/40 text-sm sm:text-lg font-light">·</span>
+                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                        onclick="switchAmenityCategory('spa', this)">Spa</span>
+                    <span class="text-warm-sand/40 text-sm sm:text-lg font-light">·</span>
+                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                        onclick="switchAmenityCategory('bar', this)">Bar</span>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Local Attractions (Seoul at Your Doorstep) -->
+        <section class="min-h-screen flex flex-col justify-center py-12 md:py-16 px-6 md:px-margin-desktop max-w-container-max mx-auto" id="attractions">
+            <div class="flex flex-col md:flex-row gap-gutter mb-20 items-center justify-between">
+                <div class="md:w-5/12 max-w-lg">
+                    <h2 class="font-display-lg text-display-lg text-on-surface mb-8 leading-tight">서울을 <br />가장 가까이서
+                    </h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-10">
+                        수도의 중심부에 위치한 미드나잇 서울은 도시의 유구한 역사와 미래지향적인 경이로움으로 안내하는 관문입니다. 호기심 많은 영혼들을 위해 컨시어지가 엄선한 가이드를 확인해
+                        보세요.
+                    </p>
+
+                    <div class="space-y-6">
+                        <!-- Attraction 1 -->
+                        <div class="border-b border-outline-variant/30 pb-6 cursor-pointer"
+                            onclick="selectAttraction(0, 'images/jack-brind-dvg1NvSuxEQ-unsplash.jpg')">
+                            <div class="flex justify-between items-center font-headline-md font-semibold text-lg md:text-xl">
+                                경복궁
+                                <span id="attraction-icon-0"
+                                    class="material-symbols-outlined transition-transform duration-300 rotate-180 text-warm-sand">expand_more</span>
+                            </div>
+                            <div id="attraction-body-0" class="mt-4 text-on-surface-variant font-body-md leading-relaxed">
+                                <p class="mb-4 text-sm md:text-base">호텔에서 15분 거리에서 수문장 교대식을 관람하세요. 가장 고요한 분위기를 즐기시려면 일출
+                                    시간대에 방문하시는 것을 추천합니다.</p>
+                                <span
+                                    class="text-warm-sand font-label-caps text-xs font-semibold block tracking-wider">컨시어지
+                                    팁: 프라이빗 야간 투어를 문의해 주세요</span>
+                            </div>
+                        </div>
+
+                        <!-- Attraction 2 -->
+                        <div class="border-b border-outline-variant/30 pb-6 cursor-pointer"
+                            onclick="selectAttraction(1, 'images/seonghak-hong-h-BxnAy_5WE-unsplash.jpg')">
+                            <div class="flex justify-between items-center font-headline-md font-semibold text-lg md:text-xl">
+                                N서울타워
+                                <span id="attraction-icon-1"
+                                    class="material-symbols-outlined transition-transform duration-300 text-warm-sand">expand_more</span>
+                            </div>
+                            <div id="attraction-body-1" class="mt-4 text-on-surface-variant font-body-md leading-relaxed hidden">
+                                <p class="mb-4 text-sm md:text-base">한눈에 들어오는 한강의 탁 트인 전망을 선사하는 랜드마크 타워입니다. 케이블카 탑승장까지
+                                    셔틀을 이용해 편리하게 이동하실 수 있습니다.</p>
+                                <span
+                                    class="text-warm-sand font-label-caps text-xs font-semibold block tracking-wider">컨시어지
+                                    팁: 일몰 30분 전 전망대 대기 추천</span>
+                            </div>
+                        </div>
+
+                        <!-- Attraction 3 -->
+                        <div class="border-b border-outline-variant/30 pb-6 cursor-pointer"
+                            onclick="selectAttraction(2, 'images/zequn-gui-IlZy859SWN8-unsplash.jpg')">
+                            <div class="flex justify-between items-center font-headline-md font-semibold text-lg md:text-xl">
+                                북촌 한옥마을
+                                <span id="attraction-icon-2"
+                                    class="material-symbols-outlined transition-transform duration-300 text-warm-sand">expand_more</span>
+                            </div>
+                            <div id="attraction-body-2" class="mt-4 text-on-surface-variant font-body-md leading-relaxed hidden">
+                                <p class="mb-4 text-sm md:text-base">조선 시대부터 현대까지 잘 보존된 고풍스러운 전통 한옥 골목길입니다. 아기자기한 전통 다원과
+                                    독립 공방들을 만나보세요.</p>
+                                <span
+                                    class="text-warm-sand font-label-caps text-xs font-semibold block tracking-wider">컨시어지
+                                    팁: 소음 방지 매너 및 한복 대여 예약 가능</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attractions Gallery Grid -->
+                <div class="md:w-6/12 aspect-square w-full mt-12 md:mt-0 rounded-sm shadow-xl overflow-hidden">
+                    <div id="attraction-img" class="w-full h-full bg-cover bg-center hover:scale-105 transition-all duration-700"
+                        style='background-image: url("images/jack-brind-dvg1NvSuxEQ-unsplash.jpg");'>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action / Footer Lead-in (Video Background) -->
+        <section class="min-h-screen flex flex-col justify-center text-soft-ivory py-12 relative overflow-hidden">
+            <!-- Background Video & Dark Overlay -->
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none">
+                <source src="images/0_Bedroom_Pillows_1280x720.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-black/55 z-[1]"></div>
+
+            <div class="relative z-10 px-6 md:px-margin-desktop max-w-container-max mx-auto text-center">
+                <h2 class="font-display-lg text-display-lg mb-8 leading-tight">Begin Your Story</h2>
+                <p class="font-body-lg text-body-lg text-secondary-fixed-dim max-w-2xl mx-auto mb-12 leading-relaxed">
+                    다가오는 시즌의 예약이 시작되었습니다.
+                    <br>전통과 내일이 만나는 곳에서 당신만의 특별한 순간을 경험해보세요.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center max-w-md mx-auto sm:max-w-none">
+                    <button
+                        class="bg-warm-sand text-soft-ivory px-12 py-4 font-label-caps uppercase tracking-widest hover:bg-champagne-gold transition-colors shadow-lg active:scale-95 duration-300"
+                        onclick="openBookingModal()">
+                        예약 가능 여부 확인
+                    </button>
+                    <button
+                        class="border border-soft-ivory text-soft-ivory px-12 py-4 font-label-caps uppercase tracking-widest hover:bg-soft-ivory hover:text-deep-charcoal transition-colors active:scale-95 duration-300"
+                        onclick="alert('Midnight Members 가입 페이지로 이동합니다.')">
+                        멤버십 가입
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="w-full relative bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant/30 pt-16 pb-8">
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-gutter gap-y-[30px] md:gap-gutter px-6 md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+            <div class="md:col-span-1">
+                <div class="font-headline-lg text-headline-lg text-primary dark:text-inverse-primary mb-6">Midnight
+                    Seoul</div>
+                <p class="font-body-md text-on-surface-variant leading-relaxed">
+                    역사적 경외심과 현대적 럭셔리 사이의 간극을 메우는, 안목 있는 여행자를 위한 목적지입니다.
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-4 mt-[20px] md:mt-0 md:pl-[100px]">
+                <span
+                    class="font-label-caps text-on-surface tracking-widest mb-2 uppercase text-xs font-bold">DISCOVER</span>
+                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                    href="#rooms">객실 및 스위트</a>
+                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                    href="#amenities">부대시설</a>
+            </div>
+
+            <div class="flex flex-col gap-4 mt-[20px] md:mt-0">
+                <span
+                    class="font-label-caps text-on-surface tracking-widest mb-2 uppercase text-xs font-bold">CONNECT</span>
+                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                    href="#"
+                    onclick="event.preventDefault(); alert('고객 센터: support@midnightseoul.com 으로 문의 부탁드립니다.');">문의하기</a>
+                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                    href="#" onclick="event.preventDefault(); alert('채용공고 준비중입니다.');">인재 채용</a>
+                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                    href="#" onclick="event.preventDefault(); alert('보도자료 준비중입니다.');">프레스룸</a>
+            </div>
+
+            <div class="flex flex-col gap-4 mt-[20px] md:mt-0">
+                <span
+                    class="font-label-caps text-on-surface tracking-widest mb-2 uppercase text-xs font-bold">FOLLOW</span>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
+                        href="#" aria-label="Instagram">
+                        <span class="material-symbols-outlined">camera</span>
+                    </a>
+                    <a class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
+                        href="#" aria-label="Kakao">
+                        <span class="material-symbols-outlined">qr_code_2</span>
+                    </a>
+                    <a class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
+                        href="#" aria-label="YouTube">
+                        <span class="material-symbols-outlined">swipe_left</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="px-6 md:px-margin-desktop py-8 border-t border-outline-variant/20 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="font-body-md text-on-surface-variant text-xs text-center md:text-left">
+                © 2024 Midnight Seoul Hotel & Residences. All Rights Reserved.
+            </div>
+            <div class="flex gap-8 font-label-caps text-[10px] text-on-surface-variant uppercase">
+                <a class="hover:text-primary transition-colors" href="#">개인정보 처리방침</a>
+                <a class="hover:text-primary transition-colors" href="#">지속가능성</a>
+                <a class="hover:text-primary transition-colors" href="#">이용약관</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SideNavBar (Mobile Navigation Drawer) -->
+    <div class="fixed inset-0 z-[60] bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300"
+        id="side-nav">
+        <div class="fixed right-0 top-0 h-full w-[512px] max-w-[90vw] bg-surface dark:bg-inverse-surface flex flex-col py-10 shadow-2xl translate-x-full transition-transform duration-300"
+            id="side-nav-content">
+            <div class="px-10 mb-12 flex justify-between items-center">
+                <div>
+                    <div class="font-headline-lg text-2xl text-primary tracking-tighter">Midnight Seoul</div>
+                </div>
+                <button class="text-on-surface-variant hover:text-primary transition-colors focus:outline-none p-1" id="close-nav-btn" aria-label="메뉴 닫기">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col flex-1 px-4 space-y-2">
+                <a class="flex items-center gap-5 py-5 text-primary font-bold border-l-4 border-primary pl-6 bg-surface-container-high text-lg rounded-r-md transition-colors"
+                    href="#rooms" onclick="toggleMobileDrawer()">
+                    <span class="material-symbols-outlined text-2xl">bed</span>
+                    객실 및 스위트
+                </a>
+                <a class="flex items-center gap-5 py-5 text-on-surface-variant hover:text-primary pl-6 hover:bg-surface-container-high text-lg rounded-r-md transition-colors"
+                    href="#amenities" onclick="toggleMobileDrawer()">
+                    <span class="material-symbols-outlined text-2xl">pool</span>
+                    부대시설
+                </a>
+                <a class="flex items-center gap-5 py-5 text-on-surface-variant hover:text-primary pl-6 hover:bg-surface-container-high text-lg rounded-r-md transition-colors"
+                    href="#attractions" onclick="toggleMobileDrawer()">
+                    <span class="material-symbols-outlined text-2xl">support_agent</span>
+                    컨시어지 & 관광
+                </a>
+            </nav>
+            <div class="px-8 mt-auto">
+                <button
+                    class="w-full bg-warm-sand text-white py-4 font-label-caps uppercase hover:bg-primary transition-colors tracking-wider text-base shadow-md"
+                    onclick="toggleMobileDrawer(); openBookingModal();">
+                    예약하기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Reservation Modal -->
+    <div class="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4"
+        id="booking-modal">
+        <div class="bg-white max-w-lg w-full p-8 md:p-10 shadow-2xl relative translate-y-8 transition-transform duration-300 text-on-surface rounded-sm"
+            id="booking-modal-content">
+            <button class="absolute top-6 right-6 text-on-surface-variant hover:text-on-surface transition-colors"
+                onclick="closeBookingModal()">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+
+            <h2 class="font-display-lg text-headline-lg text-primary mb-2 border-b pb-4">RESERVATION</h2>
+            <p class="font-body-md text-on-surface-variant text-sm mb-6">전통과 현대가 조화를 이루는 최고의 럭셔리를 예약하세요.</p>
+
+            <form class="space-y-6" id="booking-form" onsubmit="submitBooking(event)">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-label-caps text-xs text-on-surface-variant mb-2 uppercase">성명
+                            (Name)</label>
+                        <input type="text" required
+                            class="w-full border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-3 text-sm bg-surface-container-low"
+                            placeholder="홍길동" id="booking-name" />
+                    </div>
+                    <div>
+                        <label class="block font-label-caps text-xs text-on-surface-variant mb-2 uppercase">연락처
+                            (Phone)</label>
+                        <input type="tel" required
+                            class="w-full border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-3 text-sm bg-surface-container-low"
+                            placeholder="010-1234-5678" id="booking-phone" />
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-label-caps text-xs text-on-surface-variant mb-2 uppercase">이메일 주소
+                        (Email)</label>
+                    <input type="email" required
+                        class="w-full border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-3 text-sm bg-surface-container-low"
+                        placeholder="example@midnightseoul.com" id="booking-email" />
+                </div>
+                <div class="border-t pt-4 mt-4 space-y-3">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="font-body-md text-on-surface-variant">체크인 - 체크아웃</span>
+                        <span class="font-semibold" id="modal-dates">2024.10.24 - 2024.10.28 (4박)</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="font-body-md text-on-surface-variant">인원</span>
+                        <span class="font-semibold" id="modal-guests">성인 2명</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="font-body-md text-on-surface-variant">객실 등급</span>
+                        <select
+                            class="border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-2 text-xs bg-surface-container-low font-semibold"
+                            id="booking-room-type">
+                            <option value="헤리티지 스위트">헤리티지 스위트 ($1,200/박)</option>
+                            <option value="스카이 레지던스">스카이 레지던스 ($1,800/박)</option>
+                            <option value="서울 펜트하우스">서울 펜트하우스 ($4,500/박)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-warm-sand text-white py-4 font-label-caps tracking-widest uppercase hover:bg-primary transition-all duration-300 mt-6 shadow-md flex items-center justify-center">
+                    예약 신청 완료 <span class="material-symbols-outlined ml-2 text-lg">check_circle</span>
+                </button>
+            </form>
+
+            <!-- Reservation Success State -->
+            <div class="hidden flex flex-col items-center justify-center py-12 text-center" id="booking-success">
+                <span class="material-symbols-outlined text-6xl text-warm-sand mb-4 animate-bounce">check_circle</span>
+                <h3 class="font-display-lg text-headline-lg text-primary mb-2">감사합니다</h3>
+                <p class="font-body-md text-on-surface-variant text-sm mb-6 max-w-sm">
+                    예약 신청이 정상적으로 완료되었습니다. <br>
+                    입력하신 이메일로 예약 확인증을 발송해 드렸습니다. <br>
+                    컨시어지가 빠른 시일 내에 연락드리겠습니다.
+                </p>
+                <button
+                    class="bg-deep-charcoal text-white px-8 py-3 font-label-caps uppercase text-xs tracking-widest hover:bg-warm-sand transition-colors"
+                    onclick="closeBookingModal()">
+                    닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ----------------------------------------------------
+        // State Variables
+        // ----------------------------------------------------
+        const _today = new Date();
+        _today.setHours(0, 0, 0, 0);
+        let checkInDate = new Date(_today); // 오늘 날짜로 자동 설정
+        let checkOutDate = null; // 미선택 상태
+        let selectingType = 'checkout'; // 체크인은 이미 설정되어 있으므로 체크아웃부터
+        let currentCalMonth = new Date(_today.getFullYear(), _today.getMonth(), 1); // 오늘 기준 월
+
+        let guestConfig = {
+            adults: 2,
+            children: 0
+        };
+
+        // ----------------------------------------------------
+        // DOM Elements
+        // ----------------------------------------------------
+        const header = document.querySelector('header');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sideNav = document.getElementById('side-nav');
+        const sideNavContent = document.getElementById('side-nav-content');
+        const closeNavBtn = document.getElementById('close-nav-btn');
+        const navbarLogo = document.getElementById('navbar-logo');
+
+        const widgetCheckin = document.getElementById('widget-checkin-btn');
+        const widgetCheckout = document.getElementById('widget-checkout-btn');
+        const widgetGuests = document.getElementById('widget-guests-btn');
+
+        const displayCheckin = document.getElementById('display-checkin-date');
+        const displayCheckout = document.getElementById('display-checkout-date');
+        const displayGuests = document.getElementById('display-guests');
+
+        const calendarPopover = document.getElementById('calendar-popover');
+        const guestsPopover = document.getElementById('guests-popover');
+
+        const bookingModal = document.getElementById('booking-modal');
+        const bookingModalContent = document.getElementById('booking-modal-content');
+        const bookingForm = document.getElementById('booking-form');
+        const bookingSuccess = document.getElementById('booking-success');
+
+        // ----------------------------------------------------
+        // Navigation Scroll & Logo/Icon Color Detection
+        // ----------------------------------------------------
+        function updateNavColors() {
+            const amenitiesSec = document.getElementById('amenities');
+            const attractionsSec = document.getElementById('attractions');
+
+            const currentScroll = window.scrollY || document.documentElement.scrollTop;
+
+            let isOverDarkSection = true;
+
+            if (amenitiesSec && attractionsSec) {
+                const amenitiesTop = amenitiesSec.offsetTop - 100;
+                const attractionsBottom = attractionsSec.offsetTop + attractionsSec.offsetHeight - 100;
+
+                // Hero & #rooms are dark. #amenities, #dining & #attractions are light. CTA & Footer are dark.
+                if (currentScroll >= amenitiesTop && currentScroll < attractionsBottom) {
+                    isOverDarkSection = false;
+                }
+            }
+
+            if (!isOverDarkSection) {
+                // Light section: use dark text/icon
+                document.querySelectorAll('#mobile-menu-btn').forEach(el => {
+                    el.classList.remove('text-soft-ivory');
+                    el.classList.add('text-on-surface');
+                });
+                navbarLogo.classList.remove('text-soft-ivory');
+                navbarLogo.classList.add('text-primary');
+            } else {
+                // Dark section (Hero, #rooms, CTA, Footer): keep white text/icon
+                document.querySelectorAll('#mobile-menu-btn').forEach(el => {
+                    el.classList.add('text-soft-ivory');
+                    el.classList.remove('text-on-surface');
+                });
+                navbarLogo.classList.add('text-soft-ivory');
+                navbarLogo.classList.remove('text-primary');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavColors);
+        updateNavColors();
+
+        navbarLogo.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ----------------------------------------------------
+        // Mobile Navigation Drawer Toggle
+        // ----------------------------------------------------
+        function toggleMobileDrawer() {
+            const isOpen = !sideNav.classList.contains('opacity-0');
+            if (isOpen) {
+                sideNavContent.classList.add('translate-x-full');
+                sideNav.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                sideNav.classList.remove('opacity-0', 'pointer-events-none');
+                // Small timeout to trigger transition
+                setTimeout(() => {
+                    sideNavContent.classList.remove('translate-x-full');
+                }, 50);
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileDrawer);
+        closeNavBtn.addEventListener('click', toggleMobileDrawer);
+        sideNav.addEventListener('click', (e) => {
+            if (e.target === sideNav) toggleMobileDrawer();
+        });
+
+        // ----------------------------------------------------
+        // Smooth Section Pinning & Wheel Locking
+        // ----------------------------------------------------
+        (function initSectionPinning() {
+            let isAnimating = false;
+
+            window.addEventListener('wheel', (e) => {
+                const sideNavOpen = !sideNav.classList.contains('opacity-0');
+                const modalOpen = !bookingModal.classList.contains('opacity-0');
+                if (sideNavOpen || modalOpen) return;
+
+                if (Math.abs(e.deltaY) < 15) return;
+
+                const sections = Array.from(document.querySelectorAll('main > section, footer'));
+                const currentScroll = window.scrollY || document.documentElement.scrollTop;
+
+                let currentIndex = 0;
+                let minDistance = Infinity;
+                sections.forEach((sec, idx) => {
+                    const dist = Math.abs(sec.offsetTop - currentScroll);
+                    if (dist < minDistance) {
+                        minDistance = dist;
+                        currentIndex = idx;
+                    }
+                });
+
+                if (isAnimating) {
+                    e.preventDefault();
+                    return;
+                }
+
+                if (e.deltaY > 0 && currentIndex < sections.length - 1) {
+                    e.preventDefault();
+                    isAnimating = true;
+                    sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => { isAnimating = false; }, 750);
+                } else if (e.deltaY < 0 && currentIndex > 0) {
+                    e.preventDefault();
+                    isAnimating = true;
+                    sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => { isAnimating = false; }, 750);
+                }
+            }, { passive: false });
+        })();
+
+        // ----------------------------------------------------
+        // Guest Config Popover
+        // ----------------------------------------------------
+        widgetGuests.addEventListener('click', (e) => {
+            // Prevent click bubbling up and closing calendar
+            e.stopPropagation();
+            guestsPopover.classList.toggle('hidden');
+            calendarPopover.classList.add('hidden'); // Close other popovers
+        });
+
+        function updateGuestCount(type, val, event) {
+            if (event) event.stopPropagation();
+            if (type === 'adults') {
+                guestConfig.adults = Math.max(1, guestConfig.adults + val);
+                document.getElementById('adult-count').innerText = guestConfig.adults;
+            } else if (type === 'children') {
+                guestConfig.children = Math.max(0, guestConfig.children + val);
+                document.getElementById('child-count').innerText = guestConfig.children;
+            }
+        }
+
+        function applyGuests(event) {
+            if (event) event.stopPropagation();
+            let guestStr = `성인 ${guestConfig.adults}명`;
+            if (guestConfig.children > 0) {
+                guestStr += `, 아동 ${guestConfig.children}명`;
+            }
+            displayGuests.innerText = guestStr;
+            guestsPopover.classList.add('hidden');
+        }
+
+        // ----------------------------------------------------
+        // Custom Date Picker (Calendar Popover)
+        // ----------------------------------------------------
+        widgetCheckin.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectingType = 'checkin';
+            guestsPopover.classList.add('hidden');
+            openCalendar();
+        });
+
+        widgetCheckout.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectingType = 'checkout';
+            guestsPopover.classList.add('hidden');
+            openCalendar();
+        });
+
+        function openCalendar() {
+            calendarPopover.classList.remove('hidden');
+            renderCalendar();
+        }
+
+        function closeCalendar(event) {
+            if (event) event.stopPropagation();
+            calendarPopover.classList.add('hidden');
+        }
+
+        function changeCalendarMonth(val, event) {
+            if (event) event.stopPropagation();
+            currentCalMonth.setMonth(currentCalMonth.getMonth() + val);
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            const monthYearEl = document.getElementById('calendar-month-year');
+            const gridEl = document.getElementById('calendar-days-grid');
+            const statusEl = document.getElementById('calendar-status-text');
+
+            gridEl.innerHTML = '';
+
+            const year = currentCalMonth.getFullYear();
+            const month = currentCalMonth.getMonth();
+
+            monthYearEl.innerText = `${year}년 ${month + 1}월`;
+
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const lastDayDate = new Date(year, month + 1, 0).getDate();
+
+            // Empty items before first day
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyDiv = document.createElement('div');
+                gridEl.appendChild(emptyDiv);
+            }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Fill days of the month
+            for (let day = 1; day <= lastDayDate; day++) {
+                const dayButton = document.createElement('button');
+                dayButton.type = 'button';
+                dayButton.className = 'w-9 h-9 text-xs rounded-full flex items-center justify-center hover:bg-surface-container transition-all';
+                dayButton.innerText = day;
+
+                const thisDate = new Date(year, month, day);
+
+                // Check if day is past
+                if (thisDate < today) {
+                    dayButton.disabled = true;
+                    dayButton.classList.add('text-outline-variant', 'opacity-30', 'cursor-not-allowed');
+                } else {
+                    // Highlight range
+                    const isCheckin = checkInDate && thisDate.getTime() === checkInDate.getTime();
+                    const isCheckout = checkOutDate && thisDate.getTime() === checkOutDate.getTime();
+                    const isInRange = checkInDate && checkOutDate && thisDate > checkInDate && thisDate < checkOutDate;
+
+                    if (isCheckin) {
+                        dayButton.className = 'w-9 h-9 text-xs rounded-full flex items-center justify-center bg-warm-sand text-white font-bold';
+                    } else if (isCheckout) {
+                        dayButton.className = 'w-9 h-9 text-xs rounded-full flex items-center justify-center bg-deep-charcoal text-white font-bold';
+                    } else if (isInRange) {
+                        dayButton.className = 'w-9 h-9 text-xs rounded-full flex items-center justify-center bg-warm-sand/20 text-warm-sand font-medium';
+                    }
+
+                    dayButton.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        selectDay(thisDate);
+                    });
+                }
+
+                gridEl.appendChild(dayButton);
+            }
+
+            // Render Status Message
+            if (checkInDate && checkOutDate) {
+                const diffTime = Math.abs(checkOutDate - checkInDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                statusEl.innerText = `${formatDateStr(checkInDate)} ~ ${formatDateStr(checkOutDate)} (${diffDays}박)`;
+            } else if (checkInDate) {
+                statusEl.innerText = '체크아웃 날짜를 선택해 주세요.';
+            } else {
+                statusEl.innerText = '기간을 선택해 주세요.';
+            }
+        }
+
+        // Handle day selection
+        function selectDay(date) {
+            if (selectingType === 'checkin') {
+                checkInDate = date;
+                if (checkOutDate && checkOutDate <= checkInDate) {
+                    checkOutDate = null;
+                }
+                selectingType = 'checkout'; // Toggle next selection automatically
+            } else {
+                if (date <= checkInDate) {
+                    checkInDate = date;
+                    checkOutDate = null;
+                    selectingType = 'checkout';
+                } else {
+                    checkOutDate = date;
+                    selectingType = 'checkin';
+                    calendarPopover.classList.add('hidden'); // Close after complete range
+                }
+            }
+
+            updateWidgetDateLabels();
+            renderCalendar();
+        }
+
+        function formatDateStr(date) {
+            if (!date) return '';
+            const y = date.getFullYear();
+            const m = date.getMonth() + 1;
+            const d = date.getDate();
+            return `${y}년 ${m}월 ${d}일`;
+        }
+
+        function updateWidgetDateLabels() {
+            displayCheckin.innerText = formatDateStr(checkInDate) || '선택해 주세요';
+            displayCheckout.innerText = formatDateStr(checkOutDate) || '선택해 주세요';
+        }
+
+        // Initialize Widget Date Labels
+        updateWidgetDateLabels();
+
+        // Close popovers when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!calendarPopover.contains(e.target) && !widgetCheckin.contains(e.target) && !widgetCheckout.contains(e.target)) {
+                calendarPopover.classList.add('hidden');
+            }
+            if (!guestsPopover.contains(e.target) && !widgetGuests.contains(e.target)) {
+                guestsPopover.classList.add('hidden');
+            }
+        });
+
+        // ----------------------------------------------------
+        // Suite Carousel Controls
+        // ----------------------------------------------------
+        const roomTrack = document.getElementById('room-track');
+        function scrollRooms(dir) {
+            const cardWidth = roomTrack.firstElementChild.offsetWidth;
+            const spacing = 32; // gap-8 spacing is 32px
+            roomTrack.scrollBy({
+                left: dir * (cardWidth + spacing),
+                behavior: 'smooth'
+            });
+        }
+
+        // ----------------------------------------------------
+        // Dining & Detail Click Handler
+        // ----------------------------------------------------
+        function openDiningDetail(diningName) {
+            alert(`${diningName}에 대한 상세 정보 및 메뉴판 준비중입니다. 예약 문의는 고객센터로 부탁드립니다.`);
+        }
+
+        // ----------------------------------------------------
+        // Booking Dialog Modal Toggles
+        // ----------------------------------------------------
+        function openBookingModal(defaultRoom = '헤리티지 스위트') {
+            // Sync data with modal
+            document.getElementById('booking-room-type').value = defaultRoom;
+
+            let guestStr = `성인 ${guestConfig.adults}명`;
+            if (guestConfig.children > 0) guestStr += `, 아동 ${guestConfig.children}명`;
+            document.getElementById('modal-guests').innerText = guestStr;
+
+            if (checkInDate && checkOutDate) {
+                const diffTime = Math.abs(checkOutDate - checkInDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                const formatDateDot = (d) => `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+                document.getElementById('modal-dates').innerText = `${formatDateDot(checkInDate)} - ${formatDateDot(checkOutDate)} (${diffDays}박)`;
+            } else {
+                document.getElementById('modal-dates').innerText = '날짜 지정 필요';
+            }
+
+            // Show Modal
+            bookingForm.classList.remove('hidden');
+            bookingSuccess.classList.add('hidden');
+
+            bookingModal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                bookingModalContent.classList.remove('translate-y-8');
+            }, 50);
+        }
+
+        function closeBookingModal() {
+            bookingModalContent.classList.add('translate-y-8');
+            bookingModal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // Close booking modal when backdrop is clicked
+        bookingModal.addEventListener('click', (e) => {
+            if (e.target === bookingModal) closeBookingModal();
+        });
+
+        function selectRoom(roomName) {
+            openBookingModal(roomName);
+        }
+
+        function triggerSearch() {
+            if (!checkInDate || !checkOutDate) {
+                alert('체크인 및 체크아웃 날짜를 모두 선택해 주세요.');
+                selectingType = 'checkin';
+                openCalendar();
+                return;
+            }
+
+            // Open reservation modal with options filled
+            openBookingModal();
+        }
+
+        // Form Submission Behavior
+        function submitBooking(event) {
+            event.preventDefault();
+
+            // Mock API validation and delay
+            const name = document.getElementById('booking-name').value;
+            const phone = document.getElementById('booking-phone').value;
+            const email = document.getElementById('booking-email').value;
+
+            if (name && phone && email) {
+                // Animate transition to success
+                bookingForm.classList.add('hidden');
+                bookingSuccess.classList.remove('hidden');
+            }
+        }
+
+        // ----------------------------------------------------
+        // 3-Slot Side-by-Side Amenity Gallery Switcher
+        // ----------------------------------------------------
+        const amenityCategoryData = {
+            restaurant: [
+                'images/restaurant/Gemini_Generated_Image_1vz36c1vz36c1vz3.png',
+                'images/restaurant/casey-lee-awj7sRviVXo-unsplash.jpg',
+                'images/restaurant/lucas-law-CPc-PzFL9H4-unsplash.jpg',
+                'images/restaurant/jill-sauve-stHOZOzZOEQ-unsplash.jpg',
+                'images/restaurant/saile-ilyas-SiwrpBnxDww-unsplash.jpg'
+            ],
+            fitness: [
+                'images/fitness/rahul-singh-R_cN3dJLcK8-unsplash.jpg',
+                'images/fitness/marc-antoine-dube-2q4DJsZk-BM-unsplash.jpg',
+                'images/fitness/allen-boguslavsky-Pm3tdJt5yhY-unsplash.jpg',
+                'images/fitness/eran-design-A2gCxqX9bsI-unsplash.jpg'
+            ],
+            swimming: [
+                'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1200&auto=format&fit=crop',
+                'images/swimming/tholaal-mohamed-8sKTHeGgrUM-unsplash.jpg',
+                'images/swimming/chandra-oh-Fg-Ze2uoOdM-unsplash.jpg',
+                'images/swimming/kiril-krsteski-xwSr2LMxFL4-unsplash.jpg'
+            ],
+            spa: [
+                'images/spa/nico-8IK1OrkMzMQ-unsplash.jpg',
+                'images/spa/engin-akyurt-IxX6XrMfu4U-unsplash.jpg',
+                'images/spa/huum-xn_MghoT9HE-unsplash.jpg',
+                'images/spa/enecta-cannabis-extracts-80wCkpt-IKE-unsplash.jpg'
+            ],
+            bar: [
+                'images/bar/magnific_jSjmU10LD0.jpeg',
+                'images/bar/karol-chomka-aJztFERfmOY-unsplash.jpg',
+                'images/bar/michael-cummins-FdmsRk1DVns-unsplash.jpg',
+                'images/bar/ambitious-studio-rick-barrett-QjUY7auDzUQ-unsplash.jpg'
+            ]
+        };
+
+        let currentCategoryKey = 'restaurant';
+        let currentImgIndex = 0;
+
+        function buildAmenityStage() {
+            const stage = document.getElementById('amenity-stage');
+            if (!stage) return;
+
+            const imgs = amenityCategoryData[currentCategoryKey] || [];
+            stage.innerHTML = '';
+
+            imgs.forEach((url, i) => {
+                const card = document.createElement('div');
+                card.id = `amenity-card-${i}`;
+                card.className = `absolute top-1/2 left-1/2 w-[62vw] max-w-5xl h-[56vh] md:h-[65vh] flex items-center justify-center rounded-sm transition-all duration-600 ease-out select-none`;
+                card.style.transitionProperty = 'transform, opacity';
+                card.style.transitionDuration = '600ms';
+                card.style.transitionTimingFunction = 'cubic-bezier(0.25, 1, 0.5, 1)';
+
+                card.innerHTML = `<img src="${url}" alt="Amenity" class="max-h-full max-w-full h-auto w-auto object-contain rounded-sm pointer-events-none drop-shadow-md">`;
+                
+                card.onclick = () => {
+                    if (i !== currentImgIndex) {
+                        currentImgIndex = i;
+                        updateAmenityCardPositions();
+                    }
+                };
+
+                stage.appendChild(card);
+            });
+
+            updateAmenityCardPositions();
+        }
+
+        function updateAmenityCardPositions() {
+            const imgs = amenityCategoryData[currentCategoryKey] || [];
+            imgs.forEach((_, i) => {
+                const card = document.getElementById(`amenity-card-${i}`);
+                if (!card) return;
+
+                const diff = i - currentImgIndex;
+
+                if (diff === 0) {
+                    // Center Card (Active)
+                    card.style.transform = 'translate(-50%, -50%) scale(1)';
+                    card.style.opacity = '1';
+                    card.style.zIndex = '30';
+                    card.style.pointerEvents = 'none';
+                    card.style.cursor = 'default';
+                } else if (diff === 1) {
+                    // Immediate Right Card
+                    card.style.transform = 'translate(22%, -50%) scale(0.68)';
+                    card.style.opacity = '0.55';
+                    card.style.zIndex = '20';
+                    card.style.pointerEvents = 'auto';
+                    card.style.cursor = 'pointer';
+                } else if (diff === -1) {
+                    // Immediate Left Card
+                    card.style.transform = 'translate(-122%, -50%) scale(0.68)';
+                    card.style.opacity = '0.55';
+                    card.style.zIndex = '20';
+                    card.style.pointerEvents = 'auto';
+                    card.style.cursor = 'pointer';
+                } else if (diff > 1) {
+                    // Far Right Card (offscreen right)
+                    card.style.transform = `translate(${22 + (diff - 1) * 70}%, -50%) scale(0.45)`;
+                    card.style.opacity = '0';
+                    card.style.zIndex = '10';
+                    card.style.pointerEvents = 'none';
+                } else {
+                    // Far Left Card (offscreen left)
+                    card.style.transform = `translate(${-122 + (diff + 1) * 70}%, -50%) scale(0.45)`;
+                    card.style.opacity = '0';
+                    card.style.zIndex = '10';
+                    card.style.pointerEvents = 'none';
+                }
+            });
+        }
+
+        function switchAmenityCategory(catKey, el) {
+            currentCategoryKey = catKey;
+            currentImgIndex = 0;
+            buildAmenityStage();
+
+            document.querySelectorAll('.amenity-tab').forEach(tab => {
+                tab.classList.remove('text-warm-sand');
+            });
+            if (el) {
+                el.classList.add('text-warm-sand');
+            }
+        }
+
+        // Initialize Stage on load
+        document.addEventListener('DOMContentLoaded', () => {
+            buildAmenityStage();
+        });
+        // Fallback init
+        setTimeout(buildAmenityStage, 200);
+
+        // ----------------------------------------------------
+        // Attractions Image Switcher & Custom Accordion
+        // ----------------------------------------------------
+        function selectAttraction(index, imgUrl) {
+            changeAttractionImg(imgUrl);
+            for (let i = 0; i < 3; i++) {
+                const body = document.getElementById(`attraction-body-${i}`);
+                const icon = document.getElementById(`attraction-icon-${i}`);
+                if (body && icon) {
+                    if (i === index) {
+                        body.classList.remove('hidden');
+                        icon.classList.add('rotate-180');
+                    } else {
+                        body.classList.add('hidden');
+                        icon.classList.remove('rotate-180');
+                    }
+                }
+            }
+        }
+
+        function changeAttractionImg(imgUrl) {
+            const imgEl = document.getElementById('attraction-img');
+            if (imgEl) {
+                imgEl.style.opacity = '0.3';
+                setTimeout(() => {
+                    imgEl.style.backgroundImage = `url('${imgUrl}')`;
+                    imgEl.style.opacity = '1';
+                }, 200);
+            }
+        }
+
+        function changeDiningImg(imgUrl) {
+            const imgEl = document.getElementById('dining-img');
+            if (imgEl) {
+                imgEl.style.opacity = '0.3';
+                setTimeout(() => {
+                    imgEl.style.backgroundImage = `url('${imgUrl}')`;
+                    imgEl.style.opacity = '1';
+                }, 200);
+            }
+        }
+
+        // ----------------------------------------------------
+        // Horizontal Push Slide Background for #rooms (3 Slides)
+        // ----------------------------------------------------
+        const roomBgs = [
+            document.getElementById('room-bg-1'),
+            document.getElementById('room-bg-2'),
+            document.getElementById('room-bg-3')
+        ];
+        let currentBgIndex = 0;
+
+        setInterval(() => {
+            if (!roomBgs[0] || !roomBgs[1] || !roomBgs[2]) return;
+
+            const activeSlide = roomBgs[currentBgIndex];
+            const nextBgIndex = (currentBgIndex + 1) % roomBgs.length;
+            const nextSlide = roomBgs[nextBgIndex];
+
+            // Push current slide left out, push next slide in from right
+            activeSlide.classList.remove('translate-x-0');
+            activeSlide.classList.add('-translate-x-full');
+
+            nextSlide.classList.remove('translate-x-full');
+            nextSlide.classList.add('translate-x-0');
+
+            const prevIndex = currentBgIndex;
+            currentBgIndex = nextBgIndex;
+
+            // Reset prevSlide off-screen to the right after transition finishes
+            setTimeout(() => {
+                const prevSlide = roomBgs[prevIndex];
+                prevSlide.style.transition = 'none';
+                prevSlide.classList.remove('-translate-x-full');
+                prevSlide.classList.add('translate-x-full');
+                prevSlide.offsetHeight; // force reflow
+                prevSlide.style.transition = '';
+            }, 2600);
+        }, 3800);
+    </script>
+</body>
+
+</html>
