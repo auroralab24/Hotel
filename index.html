@@ -176,24 +176,32 @@
             }
         }
 
-        /* Scroll Snapping & Section Pinning */
+        /* Smooth Parallax Curtain Pinning */
         html {
-            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
         }
 
-        section {
+        /* Section 2 (Sanctuary) Sticky Pin */
+        #rooms {
+            position: sticky;
+            top: 0;
             height: 100vh;
-            min-height: 100vh;
-            max-height: 100vh;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            box-sizing: border-box;
-            overflow: hidden;
+            z-index: 10;
         }
 
+        /* Section 3 (Amenities), Attractions, and all lower sections cover Section 2 */
+        #amenities,
+        #attractions,
+        #attractions ~ section,
         footer {
-            scroll-snap-align: end;
+            position: relative;
+            z-index: 20;
+            background-color: #fcf9f8;
+        }
+
+        #amenities {
+            background-color: #ffffff !important;
+            box-shadow: 0 -35px 80px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -222,8 +230,8 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <!-- Hero Section (Snap Lock) -->
+        <section id="hero" class="relative h-screen w-full flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <div class="absolute inset-0 bg-black/45 z-10"></div>
                 <video autoplay loop muted playsinline class="w-full h-full object-cover">
@@ -382,8 +390,8 @@
             </div>
         </section>
 
-        <!-- Room Categories (Our Sanctuaries) -->
-        <section class="relative min-h-screen flex flex-col justify-center items-center py-16 px-6 md:px-margin-desktop overflow-hidden"
+        <!-- Room Categories (Sanctuary Section - Sticky Pin for Amenities Curtain Overlay) -->
+        <section class="sticky top-0 h-screen z-10 flex flex-col justify-center items-center py-16 px-6 md:px-margin-desktop overflow-hidden"
             id="rooms">
             <!-- Background Image Push Slider (3 Slides) -->
             <div class="absolute inset-0 z-0 overflow-hidden">
@@ -409,113 +417,139 @@
             </div>
         </section>
 
-        <!-- Amenities Highlight Section (Physical Sliding Stage) -->
-        <section class="min-h-screen h-screen flex flex-col items-center justify-between pt-20 pb-12 md:pb-16 bg-white px-0 overflow-hidden relative" id="amenities">
-            <!-- Physical Carousel Stage Container -->
-            <div id="amenity-stage" class="w-full h-[62vh] md:h-[70vh] relative my-auto overflow-hidden">
-                <!-- Dynamic amenity cards rendered by JS -->
-            </div>
-
-            <!-- Bottom Category Tabs -->
-            <div class="max-w-7xl mx-auto text-center w-full z-40 relative">
-                <div class="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-10 text-on-surface whitespace-nowrap"
+        <!-- Amenities Highlight Section (Moved 50px up) -->
+        <section class="min-h-screen h-screen flex flex-col items-center justify-between pt-12 md:pt-24 pb-8 md:pb-12 bg-white px-0 overflow-hidden relative z-20 shadow-[0_-25px_60px_rgba(0,0,0,0.35)]" id="amenities">
+            <!-- Top Category Tabs (Font size reduced & shifted 30px down) -->
+            <div class="max-w-7xl mx-auto text-center w-full z-40 relative pt-2 md:pt-4 mt-[30px]">
+                <div class="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-9 text-on-surface whitespace-nowrap"
                     style='font-family: "EB Garamond", serif;'>
-                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal text-warm-sand transition-colors cursor-pointer"
+                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal text-warm-sand transition-colors cursor-pointer"
                         onclick="switchAmenityCategory('restaurant', this)">Restaurant</span>
-                    <span class="text-warm-sand/40 text-sm sm:text-lg font-light">·</span>
-                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                    <span class="text-warm-sand/40 text-xs sm:text-base font-light">·</span>
+                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
                         onclick="switchAmenityCategory('fitness', this)">Fitness</span>
-                    <span class="text-warm-sand/40 text-sm sm:text-lg font-light">·</span>
-                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                    <span class="text-warm-sand/40 text-xs sm:text-base font-light">·</span>
+                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
                         onclick="switchAmenityCategory('swimming', this)">Swimming pool</span>
-                    <span class="text-warm-sand/40 text-sm sm:text-lg font-light">·</span>
-                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                    <span class="text-warm-sand/40 text-xs sm:text-base font-light">·</span>
+                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
                         onclick="switchAmenityCategory('spa', this)">Spa</span>
-                    <span class="text-warm-sand/40 text-sm sm:text-lg font-light">·</span>
-                    <span class="amenity-tab text-lg sm:text-2xl md:text-3xl lg:text-4xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                    <span class="text-warm-sand/40 text-xs sm:text-base font-light">·</span>
+                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
                         onclick="switchAmenityCategory('bar', this)">Bar</span>
                 </div>
             </div>
+
+            <!-- Physical Carousel Stage Container (Below Category Tabs) -->
+            <div id="amenity-stage" class="w-full h-[60vh] md:h-[68vh] relative my-auto overflow-hidden z-10">
+                <!-- Dynamic amenity cards rendered by JS -->
+            </div>
+
+            <!-- Large Font-Italic Background Watermark Logo (Midnight Seoul - 10% Opacity) -->
+            <div class="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 z-0 pointer-events-none select-none w-full text-center overflow-visible leading-normal pb-4">
+                <span class="font-serif italic text-[8.5vw] sm:text-[9.5vw] md:text-[10.5vw] tracking-tight font-light text-[#8C6D53]/10 dark:text-warm-sand/10 whitespace-nowrap inline-block leading-normal py-2"
+                    style='font-family: "EB Garamond", serif; font-style: italic;'>
+                    Midnight Seoul
+                </span>
+            </div>
         </section>
 
 
 
-        <!-- Local Attractions (Seoul at Your Doorstep) -->
-        <section class="min-h-screen flex flex-col justify-center py-12 md:py-16 px-6 md:px-margin-desktop max-w-container-max mx-auto" id="attractions">
-            <div class="flex flex-col md:flex-row gap-gutter mb-20 items-center justify-between">
-                <div class="md:w-5/12 max-w-lg">
-                    <h2 class="font-display-lg text-display-lg text-on-surface mb-8 leading-tight">서울을 <br />가장 가까이서
-                    </h2>
-                    <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-10">
-                        수도의 중심부에 위치한 미드나잇 서울은 도시의 유구한 역사와 미래지향적인 경이로움으로 안내하는 관문입니다. 호기심 많은 영혼들을 위해 컨시어지가 엄선한 가이드를 확인해
-                        보세요.
-                    </p>
+        <!-- Local Attractions Section (100% Full Width Solid Background Showcase Layout) -->
+        <section class="w-full relative z-20 bg-surface dark:bg-inverse-surface pt-16 md:pt-24 pb-[156px] md:pb-[180px]" id="attractions">
+            <div class="px-6 md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+            
+            <!-- Header Row: Title & Action Link (Enlarged Header) -->
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 md:mb-14 py-4 md:py-5 border-b border-outline-variant/30">
+                <div class="flex items-center gap-3">
+                    <h2 class="font-display-lg text-3xl md:text-5xl text-primary font-serif tracking-tight leading-none">Attractions</h2>
+                    <span class="text-outline-variant/50 font-light text-2xl md:text-3xl leading-none">|</span>
+                    <span class="font-body-lg text-lg md:text-2xl text-on-surface font-light leading-none">서울을 가장 가까이서</span>
+                </div>
+                <button onclick="openBookingModal()" class="mt-4 md:mt-0 flex items-center gap-2.5 group text-xs font-semibold tracking-widest text-primary hover:text-warm-sand transition-colors cursor-pointer">
+                    <span>전체보기</span>
+                    <span class="w-8 h-8 rounded-full border border-outline-variant/60 group-hover:border-warm-sand flex items-center justify-center transition-colors">
+                        <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-0.5">arrow_forward</span>
+                    </span>
+                </button>
+            </div>
 
-                    <div class="space-y-6">
-                        <!-- Attraction 1 -->
-                        <div class="border-b border-outline-variant/30 pb-6 cursor-pointer"
-                            onclick="selectAttraction(0, 'images/jack-brind-dvg1NvSuxEQ-unsplash.jpg')">
-                            <div class="flex justify-between items-center font-headline-md font-semibold text-lg md:text-xl">
-                                경복궁
-                                <span id="attraction-icon-0"
-                                    class="material-symbols-outlined transition-transform duration-300 rotate-180 text-warm-sand">expand_more</span>
-                            </div>
-                            <div id="attraction-body-0" class="mt-4 text-on-surface-variant font-body-md leading-relaxed">
-                                <p class="mb-4 text-sm md:text-base">호텔에서 15분 거리에서 수문장 교대식을 관람하세요. 가장 고요한 분위기를 즐기시려면 일출
-                                    시간대에 방문하시는 것을 추천합니다.</p>
-                                <span
-                                    class="text-warm-sand font-label-caps text-xs font-semibold block tracking-wider">컨시어지
-                                    팁: 프라이빗 야간 투어를 문의해 주세요</span>
-                            </div>
-                        </div>
-
-                        <!-- Attraction 2 -->
-                        <div class="border-b border-outline-variant/30 pb-6 cursor-pointer"
-                            onclick="selectAttraction(1, 'images/seonghak-hong-h-BxnAy_5WE-unsplash.jpg')">
-                            <div class="flex justify-between items-center font-headline-md font-semibold text-lg md:text-xl">
-                                N서울타워
-                                <span id="attraction-icon-1"
-                                    class="material-symbols-outlined transition-transform duration-300 text-warm-sand">expand_more</span>
-                            </div>
-                            <div id="attraction-body-1" class="mt-4 text-on-surface-variant font-body-md leading-relaxed hidden">
-                                <p class="mb-4 text-sm md:text-base">한눈에 들어오는 한강의 탁 트인 전망을 선사하는 랜드마크 타워입니다. 케이블카 탑승장까지
-                                    셔틀을 이용해 편리하게 이동하실 수 있습니다.</p>
-                                <span
-                                    class="text-warm-sand font-label-caps text-xs font-semibold block tracking-wider">컨시어지
-                                    팁: 일몰 30분 전 전망대 대기 추천</span>
-                            </div>
-                        </div>
-
-                        <!-- Attraction 3 -->
-                        <div class="border-b border-outline-variant/30 pb-6 cursor-pointer"
-                            onclick="selectAttraction(2, 'images/zequn-gui-IlZy859SWN8-unsplash.jpg')">
-                            <div class="flex justify-between items-center font-headline-md font-semibold text-lg md:text-xl">
-                                북촌 한옥마을
-                                <span id="attraction-icon-2"
-                                    class="material-symbols-outlined transition-transform duration-300 text-warm-sand">expand_more</span>
-                            </div>
-                            <div id="attraction-body-2" class="mt-4 text-on-surface-variant font-body-md leading-relaxed hidden">
-                                <p class="mb-4 text-sm md:text-base">조선 시대부터 현대까지 잘 보존된 고풍스러운 전통 한옥 골목길입니다. 아기자기한 전통 다원과
-                                    독립 공방들을 만나보세요.</p>
-                                <span
-                                    class="text-warm-sand font-label-caps text-xs font-semibold block tracking-wider">컨시어지
-                                    팁: 소음 방지 매너 및 한복 대여 예약 가능</span>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Main Split Showcase Grid (Left Image Showcase + Right Content Panel - Reduced Gap) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
+                
+                <!-- Left Column: Large Hero Image Display (7 Cols - Enlarged Image) -->
+                <div class="lg:col-span-7 relative group overflow-hidden rounded-sm shadow-2xl aspect-[4/3] max-h-[480px] md:max-h-[520px] bg-surface-container-low">
+                    <div id="attraction-main-img" 
+                        class="w-full h-full bg-cover bg-center transition-opacity duration-300 ease-out group-hover:scale-105"
+                        style="background-image: url('images/jack-brind-dvg1NvSuxEQ-unsplash.jpg');"></div>
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500"></div>
                 </div>
 
-                <!-- Attractions Gallery Grid -->
-                <div class="md:w-6/12 aspect-square w-full mt-12 md:mt-0 rounded-sm shadow-xl overflow-hidden">
-                    <div id="attraction-img" class="w-full h-full bg-cover bg-center hover:scale-105 transition-all duration-700"
-                        style='background-image: url("images/jack-brind-dvg1NvSuxEQ-unsplash.jpg");'>
+                <!-- Right Column: Content Panel & Slider Controls (5 Cols - Enlarged Text Content) -->
+                <div class="lg:col-span-5 flex flex-col justify-between self-stretch py-2 min-h-[440px]">
+                    
+                    <!-- Main Text Block -->
+                    <div class="my-auto py-2">
+                        <!-- Category Tag / Badge -->
+                        <div class="inline-block border border-outline-variant/80 px-3.5 py-1 text-xs md:text-sm tracking-wider text-on-surface-variant font-medium mb-5" id="attraction-tag">
+                            역사 · 궁궐
+                        </div>
+
+                        <!-- Main Title (Enlarged) -->
+                        <h3 class="font-display-lg text-3xl md:text-4xl lg:text-5xl text-primary font-bold mb-5 tracking-tight" id="attraction-hero-title">
+                            경복궁
+                        </h3>
+
+                        <!-- Description (Enlarged) -->
+                        <p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed mb-8" id="attraction-hero-desc">
+                            조선 왕조 500년의 으뜸 궁궐로서 고즈넉한 경회루 연못과 수문장 교대식을 관람해보세요. 가장 고요한 아침 시간대 방문을 추천합니다.
+                        </p>
+
+                        <!-- Action Link (Enlarged) -->
+                        <button onclick="openBookingModal()" class="flex items-center gap-2 text-sm font-semibold tracking-widest text-primary hover:text-warm-sand transition-colors cursor-pointer group">
+                            <span>자세히 보기</span>
+                            <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </button>
+                    </div>
+
+                    <!-- Bottom Progress Bar & Slide Navigation Controls (Matching User Reference Image) -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-outline-variant/20 mt-4">
+                        <!-- Progress Bar & Counter Row -->
+                        <div class="flex items-center gap-4 flex-1 max-w-md">
+                            <!-- Animated Linear Progress Bar -->
+                            <div class="flex-1 h-[4px] bg-[#e5ded4] dark:bg-outline-variant/30 rounded-full overflow-hidden relative cursor-pointer" id="attractionProgressTrack">
+                                <div id="attractionProgressBar" class="h-full bg-primary dark:bg-warm-sand rounded-full w-0 transition-none"></div>
+                            </div>
+
+                            <!-- Slide Counter Indicator -->
+                            <div class="text-sm tracking-widest font-mono text-outline font-semibold whitespace-nowrap">
+                                <span id="attraction-curr-num" class="text-primary font-bold text-base">01</span> / 06
+                            </div>
+                        </div>
+
+                        <!-- Controls: Prev | Pause/Play | Next (Matching Screenshot) -->
+                        <div class="flex items-center gap-1.5 self-end sm:self-auto text-primary">
+                            <button id="attractionPrevBtn" onclick="prevAttractionSlide()" aria-label="이전 명소"
+                                class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-colors active:scale-95 cursor-pointer">
+                                <span class="material-symbols-outlined text-2xl font-light">chevron_left</span>
+                            </button>
+                            <button id="attractionPauseBtn" onclick="toggleAttractionAutoPlay()" aria-label="일시정지/재생"
+                                class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-colors active:scale-95 cursor-pointer">
+                                <span id="attractionPauseIcon" class="material-symbols-outlined text-xl font-light">pause</span>
+                            </button>
+                            <button id="attractionNextBtn" onclick="nextAttractionSlide()" aria-label="다음 명소"
+                                class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-colors active:scale-95 cursor-pointer">
+                                <span class="material-symbols-outlined text-2xl font-light">chevron_right</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action / Footer Lead-in (Video Background) -->
-        <section class="min-h-screen flex flex-col justify-center text-soft-ivory py-12 relative overflow-hidden">
+        <!-- Call to Action / Footer Lead-in (Video Background - Compact Size) -->
+        <section class="py-20 md:py-28 flex flex-col justify-center text-soft-ivory relative overflow-hidden">
             <!-- Background Video & Dark Overlay -->
             <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none">
                 <source src="images/0_Bedroom_Pillows_1280x720.mp4" type="video/mp4">
@@ -523,20 +557,20 @@
             <div class="absolute inset-0 bg-black/55 z-[1]"></div>
 
             <div class="relative z-10 px-6 md:px-margin-desktop max-w-container-max mx-auto text-center">
-                <h2 class="font-display-lg text-display-lg mb-8 leading-tight">Begin Your Story</h2>
-                <p class="font-body-lg text-body-lg text-secondary-fixed-dim max-w-2xl mx-auto mb-12 leading-relaxed">
+                <h2 class="font-display-lg text-3xl md:text-5xl mb-6 leading-tight">Begin Your Story</h2>
+                <p class="font-body-lg text-sm md:text-base text-secondary-fixed-dim max-w-xl mx-auto mb-10 leading-relaxed">
                     다가오는 시즌의 예약이 시작되었습니다.
                     <br>전통과 내일이 만나는 곳에서 당신만의 특별한 순간을 경험해보세요.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center max-w-md mx-auto sm:max-w-none">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto sm:max-w-none">
                     <button
-                        class="bg-warm-sand text-soft-ivory px-12 py-4 font-label-caps uppercase tracking-widest hover:bg-champagne-gold transition-colors shadow-lg active:scale-95 duration-300"
+                        class="bg-warm-sand text-soft-ivory px-10 py-3.5 font-label-caps text-xs uppercase tracking-widest hover:bg-champagne-gold transition-colors shadow-lg active:scale-95 duration-300"
                         onclick="openBookingModal()">
                         예약 가능 여부 확인
                     </button>
                     <button
-                        class="border border-soft-ivory text-soft-ivory px-12 py-4 font-label-caps uppercase tracking-widest hover:bg-soft-ivory hover:text-deep-charcoal transition-colors active:scale-95 duration-300"
-                        onclick="alert('Midnight Members 가입 페이지로 이동합니다.')">
+                        class="border border-soft-ivory text-soft-ivory px-10 py-3.5 font-label-caps text-xs uppercase tracking-widest hover:bg-soft-ivory hover:text-deep-charcoal transition-colors active:scale-95 duration-300 cursor-pointer"
+                        onclick="openMembershipModal()">
                         멤버십 가입
                     </button>
                 </div>
@@ -544,62 +578,62 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer (Added 50px Top & Bottom Vertical Padding) -->
     <footer
-        class="w-full relative bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant/30 pt-16 pb-8">
+        class="w-full relative bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant/30 pt-[74px] pb-[70px]">
         <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-gutter gap-y-[30px] md:gap-gutter px-6 md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-gutter gap-y-[20px] md:gap-gutter px-6 md:px-margin-desktop py-4 md:py-6 max-w-container-max mx-auto">
             <div class="md:col-span-1">
-                <div class="font-headline-lg text-headline-lg text-primary dark:text-inverse-primary mb-6">Midnight
+                <div class="font-headline-lg text-headline-lg text-primary dark:text-inverse-primary mb-4">Midnight
                     Seoul</div>
-                <p class="font-body-md text-on-surface-variant leading-relaxed">
+                <p class="font-body-md text-on-surface-variant leading-relaxed text-xs">
                     역사적 경외심과 현대적 럭셔리 사이의 간극을 메우는, 안목 있는 여행자를 위한 목적지입니다.
                 </p>
             </div>
 
-            <div class="flex flex-col gap-4 mt-[20px] md:mt-0 md:pl-[100px]">
+            <div class="flex flex-col gap-3 mt-[10px] md:mt-0 md:pl-[100px]">
                 <span
-                    class="font-label-caps text-on-surface tracking-widest mb-2 uppercase text-xs font-bold">DISCOVER</span>
-                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                    class="font-label-caps text-on-surface tracking-widest mb-1 uppercase text-xs font-bold">DISCOVER</span>
+                <a class="font-body-md text-xs text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
                     href="#rooms">객실 및 스위트</a>
-                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                <a class="font-body-md text-xs text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
                     href="#amenities">부대시설</a>
             </div>
 
-            <div class="flex flex-col gap-4 mt-[20px] md:mt-0">
+            <div class="flex flex-col gap-3 mt-[10px] md:mt-0">
                 <span
-                    class="font-label-caps text-on-surface tracking-widest mb-2 uppercase text-xs font-bold">CONNECT</span>
-                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                    class="font-label-caps text-on-surface tracking-widest mb-1 uppercase text-xs font-bold">CONNECT</span>
+                <a class="font-body-md text-xs text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
                     href="#"
                     onclick="event.preventDefault(); alert('고객 센터: support@midnightseoul.com 으로 문의 부탁드립니다.');">문의하기</a>
-                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                <a class="font-body-md text-xs text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
                     href="#" onclick="event.preventDefault(); alert('채용공고 준비중입니다.');">인재 채용</a>
-                <a class="font-body-md text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
+                <a class="font-body-md text-xs text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-inverse-primary transition-transform duration-200 hover:translate-x-1"
                     href="#" onclick="event.preventDefault(); alert('보도자료 준비중입니다.');">프레스룸</a>
             </div>
 
-            <div class="flex flex-col gap-4 mt-[20px] md:mt-0">
+            <div class="flex flex-col gap-3 mt-[10px] md:mt-0">
                 <span
-                    class="font-label-caps text-on-surface tracking-widest mb-2 uppercase text-xs font-bold">FOLLOW</span>
-                <div class="flex gap-4">
-                    <a class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
+                    class="font-label-caps text-on-surface tracking-widest mb-1 uppercase text-xs font-bold">FOLLOW</span>
+                <div class="flex gap-3">
+                    <a class="w-9 h-9 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
                         href="#" aria-label="Instagram">
-                        <span class="material-symbols-outlined">camera</span>
+                        <span class="material-symbols-outlined text-base">camera</span>
                     </a>
-                    <a class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
+                    <a class="w-9 h-9 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
                         href="#" aria-label="Kakao">
-                        <span class="material-symbols-outlined">qr_code_2</span>
+                        <span class="material-symbols-outlined text-base">qr_code_2</span>
                     </a>
-                    <a class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
+                    <a class="w-9 h-9 flex items-center justify-center border border-outline-variant rounded-full hover:bg-warm-sand hover:text-white hover:border-warm-sand transition-all duration-300"
                         href="#" aria-label="YouTube">
-                        <span class="material-symbols-outlined">swipe_left</span>
+                        <span class="material-symbols-outlined text-base">swipe_left</span>
                     </a>
                 </div>
             </div>
         </div>
 
         <div
-            class="px-6 md:px-margin-desktop py-8 border-t border-outline-variant/20 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            class="px-6 md:px-margin-desktop py-4 border-t border-outline-variant/20 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
             <div class="font-body-md text-on-surface-variant text-xs text-center md:text-left">
                 © 2024 Midnight Seoul Hotel & Residences. All Rights Reserved.
             </div>
@@ -733,6 +767,107 @@
         </div>
     </div>
 
+    <!-- Midnight Membership Modal -->
+    <div class="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4"
+        id="membership-modal">
+        <div class="bg-white max-w-lg w-full p-8 md:p-10 shadow-2xl relative translate-y-8 transition-transform duration-300 text-on-surface rounded-sm max-h-[90vh] overflow-y-auto"
+            id="membership-modal-content">
+            <button class="absolute top-6 right-6 text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
+                onclick="closeMembershipModal()">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+
+            <div class="text-center mb-6">
+                <span class="font-label-caps text-xs text-warm-sand tracking-[0.3em] uppercase block mb-1">Exclusive Privileges</span>
+                <h2 class="font-display-lg text-headline-lg text-primary border-b border-outline-variant/30 pb-4">MIDNIGHT MEMBERS</h2>
+                <p class="font-body-md text-on-surface-variant text-sm mt-3 leading-relaxed">
+                    미드나잇 서울의 시그니처 혜택과 VIP 독점 오퍼를 가장 먼저 경험해 보세요.
+                </p>
+            </div>
+
+            <!-- VIP Privileges Preview -->
+            <div class="grid grid-cols-3 gap-2 bg-surface-container-low p-3 mb-6 rounded text-center border border-outline-variant/40">
+                <div class="p-2">
+                    <span class="material-symbols-outlined text-warm-sand text-xl mb-1 block">local_bar</span>
+                    <span class="block text-[11px] font-semibold text-primary">웰컴 샴페인</span>
+                </div>
+                <div class="p-2 border-x border-outline-variant/40">
+                    <span class="material-symbols-outlined text-warm-sand text-xl mb-1 block">restaurant</span>
+                    <span class="block text-[11px] font-semibold text-primary">다이닝 15% 할인</span>
+                </div>
+                <div class="p-2">
+                    <span class="material-symbols-outlined text-warm-sand text-xl mb-1 block">schedule</span>
+                    <span class="block text-[11px] font-semibold text-primary">레이트 체크아웃</span>
+                </div>
+            </div>
+
+            <form class="space-y-4" id="membership-form" onsubmit="submitMembership(event)">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-label-caps text-xs text-on-surface-variant mb-1 uppercase">성명 (Full Name)</label>
+                        <input type="text" required
+                            class="w-full border border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-3 text-sm bg-surface-container-low"
+                            placeholder="홍길동" id="membership-name" />
+                    </div>
+                    <div>
+                        <label class="block font-label-caps text-xs text-on-surface-variant mb-1 uppercase">연락처 (Phone)</label>
+                        <input type="tel" required
+                            class="w-full border border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-3 text-sm bg-surface-container-low"
+                            placeholder="010-1234-5678" id="membership-phone" />
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-label-caps text-xs text-on-surface-variant mb-1 uppercase">이메일 주소 (Email)</label>
+                    <input type="email" required
+                        class="w-full border border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-3 text-sm bg-surface-container-low"
+                        placeholder="vip@midnightseoul.com" id="membership-email" />
+                </div>
+                <div>
+                    <label class="block font-label-caps text-xs text-on-surface-variant mb-1 uppercase">비밀번호 (Password)</label>
+                    <input type="password" required
+                        class="w-full border border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-3 text-sm bg-surface-container-low"
+                        placeholder="8자리 이상 입력" id="membership-password" />
+                </div>
+                <div>
+                    <label class="block font-label-caps text-xs text-on-surface-variant mb-1 uppercase">선호 회원 등급 (Tier)</label>
+                    <select
+                        class="w-full border border-outline-variant/60 focus:border-warm-sand focus:ring-warm-sand p-3 text-sm bg-surface-container-low font-semibold text-primary"
+                        id="membership-tier">
+                        <option value="SILVER">Silver Tier (가입 시 즉시 혜택 제공)</option>
+                        <option value="GOLD">Gold Tier (연 3회 이상 예약 시 전담 케어)</option>
+                        <option value="BLACK">Black Diamond Tier (VIP 전용 스페셜 오퍼)</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-2 pt-2">
+                    <input type="checkbox" required id="membership-agree" class="rounded text-warm-sand focus:ring-warm-sand cursor-pointer" />
+                    <label for="membership-agree" class="text-xs text-on-surface-variant cursor-pointer">
+                        개인정보 수집 및 Midnight Members 이용 약관에 동의합니다.
+                    </label>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-deep-charcoal text-soft-ivory py-4 font-label-caps tracking-widest uppercase hover:bg-warm-sand hover:text-white transition-all duration-300 mt-4 shadow-md flex items-center justify-center cursor-pointer">
+                    Midnight Members 즉시 가입 <span class="material-symbols-outlined ml-2 text-lg">card_membership</span>
+                </button>
+            </form>
+
+            <!-- Membership Success State -->
+            <div class="hidden flex flex-col items-center justify-center py-10 text-center" id="membership-success">
+                <span class="material-symbols-outlined text-6xl text-warm-sand mb-3 animate-bounce">stars</span>
+                <h3 class="font-display-lg text-headline-lg text-primary mb-2">가입을 환영합니다!</h3>
+                <p class="font-body-md text-on-surface-variant text-sm mb-6 max-w-sm leading-relaxed">
+                    Midnight Members 회원가입이 완료되었습니다. <br>
+                    VIP 웰컴 바우처가 등록하신 이메일로 발급되었습니다.
+                </p>
+                <button
+                    class="bg-deep-charcoal text-white px-8 py-3 font-label-caps uppercase text-xs tracking-widest hover:bg-warm-sand transition-colors cursor-pointer"
+                    onclick="closeMembershipModal()">
+                    확인 및 닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ----------------------------------------------------
         // State Variables
@@ -845,50 +980,7 @@
             if (e.target === sideNav) toggleMobileDrawer();
         });
 
-        // ----------------------------------------------------
-        // Smooth Section Pinning & Wheel Locking
-        // ----------------------------------------------------
-        (function initSectionPinning() {
-            let isAnimating = false;
 
-            window.addEventListener('wheel', (e) => {
-                const sideNavOpen = !sideNav.classList.contains('opacity-0');
-                const modalOpen = !bookingModal.classList.contains('opacity-0');
-                if (sideNavOpen || modalOpen) return;
-
-                if (Math.abs(e.deltaY) < 15) return;
-
-                const sections = Array.from(document.querySelectorAll('main > section, footer'));
-                const currentScroll = window.scrollY || document.documentElement.scrollTop;
-
-                let currentIndex = 0;
-                let minDistance = Infinity;
-                sections.forEach((sec, idx) => {
-                    const dist = Math.abs(sec.offsetTop - currentScroll);
-                    if (dist < minDistance) {
-                        minDistance = dist;
-                        currentIndex = idx;
-                    }
-                });
-
-                if (isAnimating) {
-                    e.preventDefault();
-                    return;
-                }
-
-                if (e.deltaY > 0 && currentIndex < sections.length - 1) {
-                    e.preventDefault();
-                    isAnimating = true;
-                    sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
-                    setTimeout(() => { isAnimating = false; }, 750);
-                } else if (e.deltaY < 0 && currentIndex > 0) {
-                    e.preventDefault();
-                    isAnimating = true;
-                    sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
-                    setTimeout(() => { isAnimating = false; }, 750);
-                }
-            }, { passive: false });
-        })();
 
         // ----------------------------------------------------
         // Guest Config Popover
@@ -1137,6 +1229,39 @@
             if (e.target === bookingModal) closeBookingModal();
         });
 
+        // ----------------------------------------------------
+        // Membership Dialog Modal Toggles
+        // ----------------------------------------------------
+        const membershipModal = document.getElementById('membership-modal');
+        const membershipModalContent = document.getElementById('membership-modal-content');
+        const membershipForm = document.getElementById('membership-form');
+        const membershipSuccess = document.getElementById('membership-success');
+
+        function openMembershipModal() {
+            membershipForm.classList.remove('hidden');
+            membershipSuccess.classList.add('hidden');
+
+            membershipModal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                membershipModalContent.classList.remove('translate-y-8');
+            }, 50);
+        }
+
+        function closeMembershipModal() {
+            membershipModalContent.classList.add('translate-y-8');
+            membershipModal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        membershipModal.addEventListener('click', (e) => {
+            if (e.target === membershipModal) closeMembershipModal();
+        });
+
+        function submitMembership(e) {
+            e.preventDefault();
+            membershipForm.classList.add('hidden');
+            membershipSuccess.classList.remove('hidden');
+        }
+
         function selectRoom(roomName) {
             openBookingModal(roomName);
         }
@@ -1209,6 +1334,27 @@
         let currentCategoryKey = 'restaurant';
         let currentImgIndex = 0;
 
+        function getRealImgRenderedWidth(card) {
+            if (!card) return 380;
+            const img = card.querySelector('img');
+            if (!img) return card.offsetWidth || 380;
+
+            const cardW = card.offsetWidth || 400;
+            const cardH = card.offsetHeight || 400;
+
+            if (img.naturalWidth && img.naturalHeight) {
+                const imgAspect = img.naturalWidth / img.naturalHeight;
+                const cardAspect = cardW / cardH;
+                if (imgAspect < cardAspect) {
+                    return cardH * imgAspect;
+                } else {
+                    return cardW;
+                }
+            }
+
+            return img.getBoundingClientRect().width || img.offsetWidth || cardW;
+        }
+
         function buildAmenityStage() {
             const stage = document.getElementById('amenity-stage');
             if (!stage) return;
@@ -1224,7 +1370,15 @@
                 card.style.transitionDuration = '600ms';
                 card.style.transitionTimingFunction = 'cubic-bezier(0.25, 1, 0.5, 1)';
 
-                card.innerHTML = `<img src="${url}" alt="Amenity" class="max-h-full max-w-full h-auto w-auto object-contain rounded-sm pointer-events-none drop-shadow-md">`;
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Amenity';
+                img.className = 'max-h-full max-w-full h-auto w-auto object-contain rounded-sm pointer-events-none drop-shadow-md';
+                img.onload = () => {
+                    updateAmenityCardPositions();
+                };
+
+                card.appendChild(img);
                 
                 card.onclick = () => {
                     if (i !== currentImgIndex) {
@@ -1237,15 +1391,29 @@
             });
 
             updateAmenityCardPositions();
+            setTimeout(updateAmenityCardPositions, 100);
+            setTimeout(updateAmenityCardPositions, 350);
         }
 
         function updateAmenityCardPositions() {
             const imgs = amenityCategoryData[currentCategoryKey] || [];
+            const centerCard = document.getElementById(`amenity-card-${currentImgIndex}`);
+            if (!centerCard) return;
+
+            const centerWidth = getRealImgRenderedWidth(centerCard);
+            const sideScale = 0.48;
+            const gap = 50; // Fixed 50px gap from actual image edge to preview image edge
+
             imgs.forEach((_, i) => {
                 const card = document.getElementById(`amenity-card-${i}`);
                 if (!card) return;
 
                 const diff = i - currentImgIndex;
+                const sideUnscaledWidth = getRealImgRenderedWidth(card);
+                const sideWidth = sideUnscaledWidth * sideScale;
+
+                // Exact pixel offset from center to ensure 50px gap between actual image edges
+                const offsetPx = (centerWidth / 2) + gap + (sideWidth / 2);
 
                 if (diff === 0) {
                     // Center Card (Active)
@@ -1255,28 +1423,30 @@
                     card.style.pointerEvents = 'none';
                     card.style.cursor = 'default';
                 } else if (diff === 1) {
-                    // Immediate Right Card
-                    card.style.transform = 'translate(22%, -50%) scale(0.68)';
-                    card.style.opacity = '0.55';
+                    // Immediate Right Card (Exact 50px gap)
+                    card.style.transform = `translate(calc(-50% + ${offsetPx}px), -50%) scale(${sideScale})`;
+                    card.style.opacity = '0.5';
                     card.style.zIndex = '20';
                     card.style.pointerEvents = 'auto';
                     card.style.cursor = 'pointer';
                 } else if (diff === -1) {
-                    // Immediate Left Card
-                    card.style.transform = 'translate(-122%, -50%) scale(0.68)';
-                    card.style.opacity = '0.55';
+                    // Immediate Left Card (Exact 50px gap)
+                    card.style.transform = `translate(calc(-50% - ${offsetPx}px), -50%) scale(${sideScale})`;
+                    card.style.opacity = '0.5';
                     card.style.zIndex = '20';
                     card.style.pointerEvents = 'auto';
                     card.style.cursor = 'pointer';
                 } else if (diff > 1) {
                     // Far Right Card (offscreen right)
-                    card.style.transform = `translate(${22 + (diff - 1) * 70}%, -50%) scale(0.45)`;
+                    const farOffsetPx = offsetPx + (diff - 1) * (sideWidth + 60);
+                    card.style.transform = `translate(calc(-50% + ${farOffsetPx}px), -50%) scale(0.35)`;
                     card.style.opacity = '0';
                     card.style.zIndex = '10';
                     card.style.pointerEvents = 'none';
                 } else {
                     // Far Left Card (offscreen left)
-                    card.style.transform = `translate(${-122 + (diff + 1) * 70}%, -50%) scale(0.45)`;
+                    const farOffsetPx = offsetPx + (-diff - 1) * (sideWidth + 60);
+                    card.style.transform = `translate(calc(-50% - ${farOffsetPx}px), -50%) scale(0.35)`;
                     card.style.opacity = '0';
                     card.style.zIndex = '10';
                     card.style.pointerEvents = 'none';
@@ -1300,39 +1470,146 @@
         // Initialize Stage on load
         document.addEventListener('DOMContentLoaded', () => {
             buildAmenityStage();
+            startAttractionAutoPlay();
         });
         // Fallback init
-        setTimeout(buildAmenityStage, 200);
+        setTimeout(() => {
+            buildAmenityStage();
+            startAttractionAutoPlay();
+        }, 200);
 
         // ----------------------------------------------------
-        // Attractions Image Switcher & Custom Accordion
+        // Attractions Luxury Resort Split Showcase Controller (6 Unique Seoul Landmarks)
         // ----------------------------------------------------
-        function selectAttraction(index, imgUrl) {
-            changeAttractionImg(imgUrl);
-            for (let i = 0; i < 3; i++) {
-                const body = document.getElementById(`attraction-body-${i}`);
-                const icon = document.getElementById(`attraction-icon-${i}`);
-                if (body && icon) {
-                    if (i === index) {
-                        body.classList.remove('hidden');
-                        icon.classList.add('rotate-180');
-                    } else {
-                        body.classList.add('hidden');
-                        icon.classList.remove('rotate-180');
-                    }
+        const attractionSlides = [
+            {
+                tag: '역사 · 궁궐',
+                title: '경복궁',
+                desc: '조선 왕조 500년의 으뜸 궁궐로서 고즈넉한 경회루 연못과 수문장 교대식을 관람해보세요. 가장 고요한 아침 시간대 방문을 추천합니다.',
+                img: 'images/jack-brind-dvg1NvSuxEQ-unsplash.jpg'
+            },
+            {
+                tag: '도심 · 전망',
+                title: 'N서울타워',
+                desc: '수도의 상징 남산 정상에서 펼쳐지는 파노라마 360도 도심 야경과 화려한 조명 연출을 감상하실 수 있습니다.',
+                img: 'images/seonghak-hong-h-BxnAy_5WE-unsplash.jpg'
+            },
+            {
+                tag: '전통 · 골목',
+                title: '북촌 한옥마을',
+                desc: '조선 시대 고관대작들의 주거지였던 고풍스러운 흑기와 한옥 골목길의 정취를 거닐어 보세요.',
+                img: 'images/zequn-gui-IlZy859SWN8-unsplash.jpg'
+            },
+            {
+                tag: '박물관 · 문화예술',
+                title: '국립중앙박물관',
+                desc: '대한민국 최대 규모의 박물관으로 국보급 문화유산과 고즈넉한 정원, 깊은 사유를 선사하는 사유의 방을 만나보세요.',
+                img: 'images/national_museum_of_korea.jpg'
+            },
+            {
+                tag: '랜드마크 · 초고층전망',
+                title: '잠실 서울스카이',
+                desc: '세계 5위, 123층 555m 높이에서 서울 전체와 한강 지평선을 발밑으로 구름 위를 걷는 듯한 감동을 선사합니다.',
+                img: 'images/seoul_sky.png'
+            },
+            {
+                tag: '도심 · 산책',
+                title: '청계천',
+                desc: '도심 한가운데를 유유히 흐르는 청계천 물길을 따라 걷는 고즈넉한 밤 산책과 은은한 등불 연출이 선사하는 정갈한 쉼을 경험해보세요.',
+                img: 'images/cheonggyecheon.jpg'
+            }
+        ];
+
+        // ----------------------------------------------------
+        // Attractions Auto-Play Timer & Linear Progress Bar Controller
+        // ----------------------------------------------------
+        let attractionProgressInterval = null;
+        let attractionIsPaused = false;
+        let attractionProgressPercent = 0;
+        const ATTRACTION_SLIDE_DURATION = 5000; // 5 seconds per slide
+        const ATTRACTION_STEP_MS = 30; // smooth update every 30ms
+
+        function startAttractionAutoPlay() {
+            stopAttractionAutoPlay();
+            if (attractionIsPaused) return;
+
+            attractionProgressPercent = 0;
+            const bar = document.getElementById('attractionProgressBar');
+            if (bar) bar.style.width = '0%';
+
+            const totalSteps = ATTRACTION_SLIDE_DURATION / ATTRACTION_STEP_MS;
+            const stepIncrement = 100 / totalSteps;
+
+            attractionProgressInterval = setInterval(() => {
+                attractionProgressPercent += stepIncrement;
+                if (bar) bar.style.width = Math.min(attractionProgressPercent, 100) + '%';
+
+                if (attractionProgressPercent >= 100) {
+                    stopAttractionAutoPlay();
+                    nextAttractionSlide();
                 }
+            }, ATTRACTION_STEP_MS);
+        }
+
+        function stopAttractionAutoPlay() {
+            if (attractionProgressInterval) {
+                clearInterval(attractionProgressInterval);
+                attractionProgressInterval = null;
             }
         }
 
-        function changeAttractionImg(imgUrl) {
-            const imgEl = document.getElementById('attraction-img');
-            if (imgEl) {
-                imgEl.style.opacity = '0.3';
-                setTimeout(() => {
-                    imgEl.style.backgroundImage = `url('${imgUrl}')`;
-                    imgEl.style.opacity = '1';
-                }, 200);
+        function toggleAttractionAutoPlay() {
+            attractionIsPaused = !attractionIsPaused;
+            const icon = document.getElementById('attractionPauseIcon');
+
+            if (attractionIsPaused) {
+                stopAttractionAutoPlay();
+                if (icon) icon.innerText = 'play_arrow';
+            } else {
+                if (icon) icon.innerText = 'pause';
+                startAttractionAutoPlay();
             }
+        }
+
+        let currentAttractionIndex = 0;
+
+        function updateAttractionShowcase(index) {
+            currentAttractionIndex = (index + attractionSlides.length) % attractionSlides.length;
+            const slide = attractionSlides[currentAttractionIndex];
+
+            const imgEl = document.getElementById('attraction-main-img');
+            const tagEl = document.getElementById('attraction-tag');
+            const titleEl = document.getElementById('attraction-hero-title');
+            const descEl = document.getElementById('attraction-hero-desc');
+            const numEl = document.getElementById('attraction-curr-num');
+
+            if (imgEl) {
+                // Preload image object so transition is 100% instant & uniform across all 6 slides
+                const tempImg = new Image();
+                tempImg.src = slide.img;
+
+                imgEl.style.opacity = '0';
+                setTimeout(() => {
+                    imgEl.style.backgroundImage = `url('${slide.img}')`;
+                    imgEl.style.opacity = '1';
+                }, 150);
+            }
+
+            if (tagEl) tagEl.innerText = slide.tag;
+            if (titleEl) titleEl.innerText = slide.title;
+            if (descEl) descEl.innerText = slide.desc;
+            if (numEl) numEl.innerText = String(currentAttractionIndex + 1).padStart(2, '0');
+
+            // Restart progress timer on slide transition
+            startAttractionAutoPlay();
+        }
+
+        function nextAttractionSlide() {
+            updateAttractionShowcase(currentAttractionIndex + 1);
+        }
+
+        function prevAttractionSlide() {
+            updateAttractionShowcase(currentAttractionIndex - 1);
         }
 
         function changeDiningImg(imgUrl) {
@@ -1383,6 +1660,34 @@
                 prevSlide.style.transition = '';
             }, 2600);
         }, 3800);
+
+        // ----------------------------------------------------
+        // Smooth Snap-Lock from Hero (Section 1) to Section 2 (Sanctuary)
+        // ----------------------------------------------------
+        let isHeroSnapping = false;
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const hero = document.getElementById('hero');
+            const rooms = document.getElementById('rooms');
+            if (!hero || !rooms || isHeroSnapping) return;
+
+            const scrollY = window.scrollY;
+            const isScrollingDown = scrollY > lastScrollY;
+            lastScrollY = scrollY;
+
+            // When scrolling down from Hero section into Section 2
+            if (isScrollingDown && scrollY > 60 && scrollY < rooms.offsetTop - 60) {
+                isHeroSnapping = true;
+                window.scrollTo({
+                    top: rooms.offsetTop,
+                    behavior: 'smooth'
+                });
+                setTimeout(() => {
+                    isHeroSnapping = false;
+                }, 750);
+            }
+        }, { passive: true });
     </script>
 </body>
 
