@@ -213,7 +213,7 @@
         <nav
             class="flex justify-between items-center w-full px-6 md:px-margin-desktop py-4 mx-auto">
             <!-- Logo -->
-            <div class="font-headline-lg text-headline-lg text-soft-ivory dark:text-soft-ivory tracking-tighter cursor-pointer transition-colors duration-300"
+            <div class="font-headline-lg text-xl sm:text-2xl md:text-headline-lg text-soft-ivory dark:text-soft-ivory tracking-tighter cursor-pointer transition-colors duration-300"
                 id="navbar-logo">
                 Midnight Seoul
             </div>
@@ -223,7 +223,7 @@
                 <!-- Hamburger Menu Toggle -->
                 <button class="text-soft-ivory focus:outline-none p-1 hover:opacity-80 transition-opacity" id="mobile-menu-btn"
                     aria-label="메뉴 열기">
-                    <span class="material-symbols-outlined text-3xl">menu</span>
+                    <span class="material-symbols-outlined text-2xl md:text-3xl">menu</span>
                 </button>
             </div>
         </nav>
@@ -240,16 +240,16 @@
             </div>
 
             <div class="relative z-20 max-w-4xl px-margin-mobile text-center hero-title-load">
-                <span class="font-label-caps text-soft-ivory mb-6 block tracking-[0.3em] opacity-90 uppercase"
+                <span class="font-label-caps text-soft-ivory mb-3 md:mb-6 block tracking-[0.2em] md:tracking-[0.3em] opacity-90 uppercase text-xs md:text-sm"
                     style='font-family: "EB Garamond", serif;'>WELCOME TO THE HEIGHT OF SEOUL</span>
-                <h1 class="font-display-lg text-display-lg text-soft-ivory mb-12 drop-shadow-sm md:text-[84px] leading-tight"
+                <h1 class="font-display-lg text-3xl sm:text-5xl md:text-[84px] text-soft-ivory mb-6 md:mb-12 drop-shadow-sm leading-tight"
                     style='font-family: "EB Garamond", serif;'>
                     Where the City <br class="" /><span class="italic font-light">Finds its Calm</span>
                 </h1>
 
                 <!-- Booking Widget Container -->
                 <div
-                    class="relative mt-12 bg-white/95 backdrop-blur-md p-2 shadow-2xl flex flex-col md:flex-row items-stretch border border-outline-variant/20 max-w-container-max mx-auto w-full z-20">
+                    class="relative mt-6 md:mt-12 bg-white/95 backdrop-blur-md p-2 shadow-2xl flex flex-col md:flex-row items-stretch border border-outline-variant/20 max-w-container-max mx-auto w-full z-20">
                     <div
                         class="flex-1 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-outline-variant/30 text-on-surface">
 
@@ -419,35 +419,39 @@
 
         <!-- Amenities Highlight Section (Moved 50px up) -->
         <section class="min-h-screen h-screen flex flex-col items-center justify-between pt-12 md:pt-24 pb-8 md:pb-12 bg-white px-0 overflow-hidden relative z-20 shadow-[0_-25px_60px_rgba(0,0,0,0.35)]" id="amenities">
-            <!-- Top Category Tabs (Font size reduced & shifted 30px down) -->
-            <div class="max-w-7xl mx-auto text-center w-full z-40 relative pt-2 md:pt-4 mt-[30px]">
-                <div class="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-9 text-on-surface whitespace-nowrap"
+            <!-- Top Category Tabs (Shifted down further on mobile) -->
+            <div class="max-w-7xl mx-auto text-center w-full z-40 relative pt-2 md:pt-4 mt-[90px] md:mt-[30px]">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 md:gap-9 text-on-surface whitespace-nowrap"
                     style='font-family: "EB Garamond", serif;'>
-                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal text-warm-sand transition-colors cursor-pointer"
-                        onclick="switchAmenityCategory('restaurant', this)">Restaurant</span>
-                    <span class="text-warm-sand/40 text-xs sm:text-base font-light">·</span>
-                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
-                        onclick="switchAmenityCategory('fitness', this)">Fitness</span>
-                    <span class="text-warm-sand/40 text-xs sm:text-base font-light">·</span>
-                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
-                        onclick="switchAmenityCategory('swimming', this)">Swimming pool</span>
-                    <span class="text-warm-sand/40 text-xs sm:text-base font-light">·</span>
-                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
-                        onclick="switchAmenityCategory('spa', this)">Spa</span>
-                    <span class="text-warm-sand/40 text-xs sm:text-base font-light">·</span>
-                    <span class="amenity-tab text-base sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
-                        onclick="switchAmenityCategory('bar', this)">Bar</span>
+                    <div class="flex items-center justify-center gap-3 sm:gap-6 md:gap-9">
+                        <span class="amenity-tab text-xl sm:text-xl md:text-2xl lg:text-3xl font-normal text-warm-sand transition-colors cursor-pointer"
+                            onclick="switchAmenityCategory('restaurant', this)">Restaurant</span>
+                        <span class="text-warm-sand/40 text-sm sm:text-base font-light">·</span>
+                        <span class="amenity-tab text-xl sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                            onclick="switchAmenityCategory('fitness', this)">Fitness</span>
+                    </div>
+                    <span class="hidden sm:inline text-warm-sand/40 text-sm sm:text-base font-light">·</span>
+                    <div class="flex items-center justify-center gap-3 sm:gap-6 md:gap-9">
+                        <span class="amenity-tab text-xl sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                            onclick="switchAmenityCategory('swimming', this)">Swimming pool</span>
+                        <span class="text-warm-sand/40 text-sm sm:text-base font-light">·</span>
+                        <span class="amenity-tab text-xl sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                            onclick="switchAmenityCategory('spa', this)">Spa</span>
+                        <span class="text-warm-sand/40 text-sm sm:text-base font-light">·</span>
+                        <span class="amenity-tab text-xl sm:text-xl md:text-2xl lg:text-3xl font-normal hover:text-warm-sand transition-colors cursor-pointer"
+                            onclick="switchAmenityCategory('bar', this)">Bar</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Physical Carousel Stage Container (Below Category Tabs) -->
-            <div id="amenity-stage" class="w-full h-[60vh] md:h-[68vh] relative my-auto overflow-hidden z-10">
+            <div id="amenity-stage" class="w-full h-[60vh] md:h-[68vh] relative my-auto overflow-hidden z-10 -translate-y-6 md:translate-y-0">
                 <!-- Dynamic amenity cards rendered by JS -->
             </div>
 
             <!-- Large Font-Italic Background Watermark Logo (Midnight Seoul - 10% Opacity) -->
             <div class="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 z-0 pointer-events-none select-none w-full text-center overflow-visible leading-normal pb-4">
-                <span class="font-serif italic text-[8.5vw] sm:text-[9.5vw] md:text-[10.5vw] tracking-tight font-light text-[#8C6D53]/10 dark:text-warm-sand/10 whitespace-nowrap inline-block leading-normal py-2"
+                <span class="font-serif italic text-[14vw] sm:text-[9.5vw] md:text-[10.5vw] tracking-tight font-light text-[#8C6D53]/15 dark:text-warm-sand/15 whitespace-nowrap inline-block leading-normal py-2"
                     style='font-family: "EB Garamond", serif; font-style: italic;'>
                     Midnight Seoul
                 </span>
